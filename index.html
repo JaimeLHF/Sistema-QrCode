@@ -11,7 +11,7 @@
 <body>
   <input type="text" id="input">
 
-  <div id="exemplo"></div>
+  <button id="add">Confirmar</button>
 
   <table>
     <thead>
@@ -31,23 +31,13 @@
   <script src="script.js"></script>
 
   <script>
-    var citiesRef = db.collection("Produtos");
-    var query = citiesRef.where("Cor", "==", "SMOKED PERFECT WOOD").get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
 
     const exemplo = document.getElementById('exemplo')
     const input = document.getElementById('input')
     const tbody = document.getElementById('tbody')
-
-
+    const estoque = []
+    const add = document.getElementById('add')
+  
     input.addEventListener('input', event => {
       const inputValue = event.target.value
 
@@ -66,10 +56,28 @@
             cellProduto.innerHTML = doc.data().Produto
             cellCor.innerHTML = doc.data().Cor
             cellQtd.innerHTML = 1
+
+            estoque.push({
+              Cod: inputValue,
+              Produto: doc.data().Produto,
+              Cor: doc.data().Cor,
+              Qtd: 1,
+            })           
+                      
+            
           })
-
-        console.log("Show!")
-
+          
+          
+        add.addEventListener('click', () => {
+          estoque.forEach((e) => {
+            db.collection('Estoque').doc(e.Cod).update({
+              Produto: e.Produto,
+              Cor: e.Cor,
+              Qtd: firebase.firestore.FieldValue.increment(e.Qtd)
+            })
+          })
+        })
+        
         input.value = ""
         input.focus()
       }
