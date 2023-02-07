@@ -1,91 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QrCode</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Login</title>
 </head>
-
-<body>
-  <input type="text" id="input">
-
-  <button id="add">Confirmar</button>
-
-  <table>
-    <thead>
-      <th>Código</th>
-      <th>Produto</th>
-      <th>Cor</th>
-      <th>Qtd</th>
-    </thead>
-    <tbody id="tbody">
-
-    </tbody>
-  </table>
-
-  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
-  <script src="script.js"></script>
-
-  <script>
-
-    const exemplo = document.getElementById('exemplo')
-    const input = document.getElementById('input')
-    const tbody = document.getElementById('tbody')
-    const estoque = []
-    const add = document.getElementById('add')
+<body>  
   
-    input.addEventListener('input', event => {
-      const inputValue = event.target.value
-
-      if (inputValue.length === 3) {
-        db.collection("Produtos").doc(inputValue)
-          .onSnapshot((doc) => {
-
-            var qtdLinhas = tbody.rows.length;
-            var linha = tbody.insertRow(qtdLinhas);
-            var cellCodigo = linha.insertCell(0);
-            var cellProduto = linha.insertCell(1);
-            var cellCor = linha.insertCell(2);
-            var cellQtd = linha.insertCell(3);
-
-            cellCodigo.innerHTML = inputValue
-            cellProduto.innerHTML = doc.data().Produto
-            cellCor.innerHTML = doc.data().Cor
-            cellQtd.innerHTML = 1
-
-            estoque.push({
-              Cod: inputValue,
-              Produto: doc.data().Produto,
-              Cor: doc.data().Cor,
-              Qtd: 1,
-            })           
-                      
-            
-          })
-          
-          
-        add.addEventListener('click', () => {
-          estoque.forEach((e) => {
-            db.collection('Estoque').doc(e.Cod).update({
-              Produto: e.Produto,
-              Cor: e.Cor,
-              Qtd: firebase.firestore.FieldValue.increment(e.Qtd)
-            })
-          })
-        })
-        
-        input.value = ""
-        input.focus()
-      }
-    })
-
-
-
-  </script>
+        <div>
+          <div>
+            <div>
+              <h1>Login</h1>
+            </div>
+            <div>
+              <div>
+                <div>
+                  <img src="" alt="Logo" id="img" />
+                </div>
+      
+                <div>
+      
+                  <div>
+      
+                    <div>
+                      <label for="email">Email</label>
+                      <input type="email" name="email" id="email" required
+                        placeholder="&#xf0e0;" />
+      
+                    </div>
+                    <div class="form-group">
+                      <label for="password" class="mt-2">Senha</label>
+                      <input type="password" name="password" id="password" required
+                        placeholder="&#xf023;" />
+                    </div>
+                    <button type="button">
+                      Login
+      
+                    </button>
+      
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 </body>
-
 </html>

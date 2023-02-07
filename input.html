@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="Styles/reset.css">
+  <link rel="stylesheet" href="Styles/input.css">
+  <title>QrCode</title>
+</head>
+
+<body>
+
+  <header class="cabecalho">
+    <button class="cabecalho__menu" aria-label="Menu"><i></i></button>
+    <h1>Entrada Estoque</h1>
+    <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png" alt="" srcset=""></button>
+
+  </header>
+
+  <section class="infos">
+    <input type="text" id="input">
+    <button id="add">Confirmar</button>
+    <button id="cancel">Cancelar</button>
+  </section>
+
+  <table>
+    <thead>
+      <th>Código</th>
+      <th>Produto</th>
+      <th>Cor</th>
+      <th>Qtd</th>
+    </thead>
+    <tbody class="tbody" id="tbody">
+      <td>295</td>
+      <td>BELICHE CASAL MONTESSORIANA FAMILY STAR PLUS</td>
+      <td>BRANCO ARTICO ONE/MONTANA PERFECT WOOD</td>
+      <td>1</td>
+    </tbody>
+  </table>
+
+
+  <script type="module" src="./JS/input.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+  <script src="https://unpkg.com/sweetalert2@9/dist/sweetalert2.all.js"></script>
+
+
+</body>
+
+</html>

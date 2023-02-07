@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'icones';
+    src: url(../icons/icones.ttf);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
+
+body {
+    background-color: #1D232A;
+    font-family: 'Open Sans', 'icones', sans-serif;
+    color: #ffffff;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 8px 16px;   
+}
+
+.cabecalho__menu {
+font-family: inherit;
+font-size: inherit;
+color: inherit;
+font-weight: inherit;
+padding: 0;
+border: none;
+background-color: unset;
+}
+
+.cabecalho__menu i::before {
+    content: "\e904";
+    font-size: 32px;
+}
+
+.cabecalho h1 {
+    font-size: 24px;
+    font-family: Raleway;
+}
+
+.cabecalho__home {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    padding: 0;
+    border: none;
+    background-color: unset;
+    width: 15%;
+    position: relative;
+}
+
+
+.cabecalho__home img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+
+.infos {
+    display: flex;
+}
