@@ -22,24 +22,48 @@
 
   </header>
 
+  <!-- --------------   section infos (botoes - card)  -------------- -->
   <section class="infos">
-    <input type="text" id="input">
-    <button id="add">Confirmar</button>
-    <button id="cancel">Cancelar</button>
+    <div>
+      <button id="add" class="add">Confirmar</button>
+      <button id="cancel" class="cancel">Cancelar</button>
+    </div>
+
+
+
+    <div class="cards">
+
+      <div class="firstCard">
+        <h5 class="no-margin">Volumes Total:</h5>
+        <span class="text-uppercase text-size-mini"><b id="count-volumes">0</b>Volumes</span>
+        <i class="icon-box"></i>
+      </div>
+
+      <div class="secondCard">
+        <h5>Peso Total:</h5><span><b id="count-peso">0</b>Kg</span>
+        <i class="icon-peso"></i>
+      </div>
+
+      <div class="thirdCard">
+        <h5 class="no-margin">Cubagem Total:</h5>
+        <span class="text-uppercase text-size-mini"><b id="count-cubagem">0</b>m³</span>
+        <i class="icon-cubagem"></i>
+      </div>
+
+    </div>
+
   </section>
 
-  <table>
+  <section class="info__input">
+    <input type="text" class="input" id="input">
+  </section>
+
+  <table class="table" cellspacing="10" cellpadding="4">
     <thead>
-      <th>Código</th>
-      <th>Produto</th>
-      <th>Cor</th>
-      <th>Qtd</th>
+      <th>Table</th>
     </thead>
     <tbody class="tbody" id="tbody">
-      <td>295</td>
-      <td>BELICHE CASAL MONTESSORIANA FAMILY STAR PLUS</td>
-      <td>BRANCO ARTICO ONE/MONTANA PERFECT WOOD</td>
-      <td>1</td>
+
     </tbody>
   </table>
 
@@ -49,7 +73,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
   <script src="https://unpkg.com/sweetalert2@9/dist/sweetalert2.all.js"></script>
-
+  
 
 </body>
 

@@ -12,30 +12,49 @@ firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 
 
-const exemplo = document.getElementById('exemplo')
 const input = document.getElementById('input')
-let tbody = document.getElementById('tbody')
+const tbody = document.getElementById('tbody')
+const add = document.getElementById('add')
 
 const estoque = []
-const add = document.getElementById('add')
+
 
 input.addEventListener('input', event => {
     const inputValue = event.target.value
 
     if (inputValue.length === 3) {
 
-        db.collection("Produtos").doc(inputValue)
+        db.collection("Estoque").doc(inputValue)
+
             .onSnapshot((doc) => {
                 estoque.push({
                     Cod: inputValue,
                     Produto: doc.data().Produto,
                     Cor: doc.data().Cor,
-                    Qtd: 1,
+                    Qtd: 0,
                 })
 
-                // const li = document.createElement('li')
 
-                estoque.forEach((data) => {
+                var found = estoque.find((id_unico) => {
+
+                    if (id_unico.Cod == inputValue) {
+                        return id_unico.Qtd++
+                    }
+                })
+
+
+
+                const unicos = new Map();
+
+                // Funcao para trazer somente Cod unicos do array de objetos estoque
+                estoque.forEach((id_Unico) => {
+                    if (!unicos.has(id_Unico.Cod)) {
+                        unicos.set(id_Unico.Cod, id_Unico)
+                    }
+                })
+
+
+                unicos.forEach((data) => {
 
                     const qtdLinhas = tbody.rows.length;
                     const linha = tbody.insertRow(qtdLinhas);
@@ -46,26 +65,14 @@ input.addEventListener('input', event => {
                     var cellQtd = linha.insertCell(3);
 
 
-                    cellCodigo.innerHTML = data.Cod
-                    cellProduto.innerHTML = data.Produto
-                    cellCor.innerHTML = data.Cor
-                    cellQtd.innerHTML = data.Qtd
-
-                    //     li.innerHTML = `
-                    // <div class="divLi">               
-                    // <h3 class="li_Cod">${data.Cod}</h3>
-                    // <div class="prod_cor">
-                    // <p class="li_Prod">${data.Produto}</p>
-                    // <p class="li_cor">${data.Cor}</p>
-                    // </div>
-                    // <h2 class="li_qtd">${data.Qtd}</h2>                
-                    // </div>
-                    // `
-                    //     tbody.appendChild(li)
+                    cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove"><img src="img/trash.png" alt="Delete"></button>`
+                    cellProduto.innerHTML = `Produto: ${data.Produto}`
+                    cellCor.innerHTML = `Cor: ${data.Cor}`
+                    cellQtd.innerHTML = `Qtd: ${data.Qtd}`
 
                 })
-
             })
+
         tbody.innerText = ''
         input.value = ""
         input.focus()
@@ -74,11 +81,25 @@ input.addEventListener('input', event => {
 })
 
 add.addEventListener('click', () => {
-    estoque.forEach((e) => {
+
+
+
+    const unicos = new Map();
+
+    // Funcao para trazer somente Cod unicos do array de objetos estoque
+    estoque.forEach((id_Unico) => {
+        if (!unicos.has(id_Unico.Cod)) {
+            unicos.set(id_Unico.Cod, id_Unico)
+        }
+    })
+
+    if(tbody.rows.length > 0){
+   // Funcao para add em firestore do Map unicos
+    unicos.forEach((e) => {
         db.collection('Estoque').doc(e.Cod).update({
             Produto: e.Produto,
             Cor: e.Cor,
-            Qtd: firebase.firestore.FieldValue.increment(1)
+            Qtd: firebase.firestore.FieldValue.increment(e.Qtd)
         })
     })
 
@@ -92,6 +113,17 @@ add.addEventListener('click', () => {
             window.location.replace('index.html')
         }, 1000)
     })
+}else{
+    swal.fire({
+        title: 'Nenhum Produto!',
+        icon: 'error',
+        showconfirmButton: true,
+        confirmButtonText: 'Ok'
+    })
+}
+
 })
 
-
+window.onload = () =>  {
+    input.focus()
+}

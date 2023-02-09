@@ -5,28 +5,34 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap');
 
+
+
 body {
-    background-color: #1D232A;
+    background-color: #000000;
     font-family: 'Open Sans', 'icones', sans-serif;
     color: #ffffff;
+
 }
+
+
+/*  --------------   header  --------------*/
 
 .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #000000;
-    padding: 8px 16px;   
+    padding: 8px 16px;
 }
 
 .cabecalho__menu {
-font-family: inherit;
-font-size: inherit;
-color: inherit;
-font-weight: inherit;
-padding: 0;
-border: none;
-background-color: unset;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    padding: 0;
+    border: none;
+    background-color: unset;
 }
 
 .cabecalho__menu i::before {
@@ -59,7 +65,151 @@ background-color: unset;
 }
 
 
+/*  --------------   section infos (botoes - card)  --------------*/
 
 .infos {
     display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    padding: 2em 1em;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(180deg, #0B3066, #000000f0);
+}
+
+.cancel {
+    background-color: #21262d;
+    color: #58a6ff;
+    border-color: rgba(240, 246, 252, 0.1);
+    padding: 1em;
+    border-radius: 0.25rem;
+    width: auto;
+}
+
+.add {
+    background-color: #1f6feb;
+    color: #ffffff;
+    border-color: rgba(240, 246, 252, 0.1);
+    padding: 1em;
+    border-radius: 0.25rem;
+    width: auto;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+/*  --------------   section input  --------------*/
+
+.info__input {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: 1em 0 2em 0;
+}
+
+.input {
+    width: 7.5em;
+    height: 2em;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.5em 0.15em #f43b3b, 0 0 0.5em .1em #f43b3b5b;
+}
+
+.input:hover {
+    transition: 0.4s;
+    border: none;
+    box-shadow: 0 0 0.5em 0.15em #3bf1f473, 0 0 0.5em .1em #3bf1f45b;
+}
+
+
+
+
+/*  --------------   table  --------------*/
+
+.table {
+    width: 100%;  
+    font-weight: 500; 
+}
+
+
+.tbody td {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+}
+
+tr:nth-child(odd) td {
+    background-color: rgb(13, 17, 23);
+    color: white;
+}
+
+tr:nth-child(even) td {
+    background-color: rgb(0, 108, 145);
+    color: white;
+}
+
+tr:nth-child(odd) td:nth-child(1) {
+    background-color: rgb(13, 110, 201);
+    height: 5vh;
+    color: white;
+    border-radius: .5rem .5rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn__remove {
+    background: transparent;      
+    border: none;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;     
+}
+
+.btn__remove img {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 1em;
+    padding: .5em;
+    max-width:50%;
+    max-height:50%;
+    width: auto;
+    height: auto;
+}
+
+
+
+.btn__remove-transp {
+    background-color: transparent;
+    border: none;
+    height: 5vh;
+    width: 7.5vh;
+    margin-left: 1em;
+}
+
+tr:nth-child(odd) td:nth-child(4) {
+    border-radius: .25rem;
+
+}
+
+tr:nth-child(even) td:nth-child(1) {
+    background-color: #00ffb48f;
+    height: 5vh;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: .5rem .5rem 0 0;
 }
