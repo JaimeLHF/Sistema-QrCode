@@ -15,74 +15,116 @@ const db = firebase.firestore()
 const input = document.getElementById('input')
 const tbody = document.getElementById('tbody')
 const add = document.getElementById('add')
+const cancel = document.getElementById('cancel')
+var codSearch = []
+var listCod = []
 
 const estoque = []
 
-
 input.addEventListener('input', event => {
+
     const inputValue = event.target.value
+
 
     if (inputValue.length === 3) {
 
-        db.collection("Estoque").doc(inputValue)
+        // Verificar se produto existe na colecao do banco de dados (documento)
+        db.collection('Estoque').get().then(
+            snapshot => {
+                snapshot.docs.reduce((listCod, doc) => {
 
-            .onSnapshot((doc) => {
-                estoque.push({
-                    Cod: inputValue,
-                    Produto: doc.data().Produto,
-                    Cor: doc.data().Cor,
-                    Qtd: 0,
-                })
+                    listCod = `${doc.id}`
+                    codSearch.push(listCod)
+                }, '')
 
+                const found = codSearch.find(element => element == inputValue)
 
-                var found = estoque.find((id_unico) => {
-
-                    if (id_unico.Cod == inputValue) {
-                        return id_unico.Qtd++
+                const result = codSearch.sort().reduce((init, current) => {
+                    if (init.length === 0 || init[init.length - 1] !== current) {
+                        init.push(current)
                     }
-                })
+                    return init
+
+                }, []);
+
+                codSearch = result
+
+                // Se não existe
+                if (!found) {
+                    swal.fire({
+                        title: 'Produto não cadastrado!',
+                        icon: 'info',
+                        showconfirmButton: true,
+                        confirmButtonText: 'Ok'
+                    })
+
+                    input.value = ""
+                    input.focus()
+                    // Se existe
+                } else {
+
+                    db.collection("Estoque").doc(inputValue)
+
+                        .onSnapshot((doc) => {
+                            estoque.push({
+                                Cod: inputValue,
+                                Produto: doc.data().Produto,
+                                Cor: doc.data().Cor,
+                                Qtd: 0,
+                            })
+
+
+                            estoque.find((id_unico) => {
+
+                                if (id_unico.Cod == inputValue) {
+                                    return id_unico.Qtd++
+                                }
+                            })
 
 
 
-                const unicos = new Map();
-
-                // Funcao para trazer somente Cod unicos do array de objetos estoque
-                estoque.forEach((id_Unico) => {
-                    if (!unicos.has(id_Unico.Cod)) {
-                        unicos.set(id_Unico.Cod, id_Unico)
-                    }
-                })
+                            // Funcao para trazer somente Cod unicos do array de objetos estoque
+                            const unicos = new Map();
 
 
-                unicos.forEach((data) => {
-
-                    const qtdLinhas = tbody.rows.length;
-                    const linha = tbody.insertRow(qtdLinhas);
-
-                    var cellCodigo = linha.insertCell(0);
-                    var cellProduto = linha.insertCell(1);
-                    var cellCor = linha.insertCell(2);
-                    var cellQtd = linha.insertCell(3);
+                            estoque.forEach((id_Unico) => {
+                                if (!unicos.has(id_Unico.Cod)) {
+                                    unicos.set(id_Unico.Cod, id_Unico)
+                                }
+                            })
 
 
-                    cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove"><img src="img/trash.png" alt="Delete"></button>`
-                    cellProduto.innerHTML = `Produto: ${data.Produto}`
-                    cellCor.innerHTML = `Cor: ${data.Cor}`
-                    cellQtd.innerHTML = `Qtd: ${data.Qtd}`
+                            unicos.forEach((data) => {
 
-                })
-            })
+                                const qtdLinhas = tbody.rows.length;
+                                const linha = tbody.insertRow(qtdLinhas);
 
-        tbody.innerText = ''
-        input.value = ""
-        input.focus()
+                                var cellCodigo = linha.insertCell(0);
+                                var cellProduto = linha.insertCell(1);
+                                var cellCor = linha.insertCell(2);
+                                var cellQtd = linha.insertCell(3);
+
+
+                                cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove"><img src="img/trash.png" alt="Delete"></button>`
+                                cellProduto.innerHTML = `Produto: ${data.Produto}`
+                                cellCor.innerHTML = `Cor: ${data.Cor}`
+                                cellQtd.innerHTML = `Qtd: ${data.Qtd}`
+
+                            })
+                        })
+
+                    tbody.innerText = ''
+                    input.value = ""
+                    input.focus()
+                }
+            }
+        )
     }
+
 
 })
 
 add.addEventListener('click', () => {
-
-
 
     const unicos = new Map();
 
@@ -93,37 +135,79 @@ add.addEventListener('click', () => {
         }
     })
 
-    if(tbody.rows.length > 0){
-   // Funcao para add em firestore do Map unicos
-    unicos.forEach((e) => {
-        db.collection('Estoque').doc(e.Cod).update({
-            Produto: e.Produto,
-            Cor: e.Cor,
-            Qtd: firebase.firestore.FieldValue.increment(e.Qtd)
-        })
-    })
+    if (tbody.rows.length > 0) {
 
-    swal.fire({
-        title: 'Estoque Atualizado!',
-        icon: 'success',
-        showconfirmButton: true,
-        confirmButtonText: 'Ok'
-    }).then(() => {
-        setTimeout(() => {
-            window.location.replace('index.html')
-        }, 1000)
-    })
-}else{
-    swal.fire({
-        title: 'Nenhum Produto!',
-        icon: 'error',
-        showconfirmButton: true,
-        confirmButtonText: 'Ok'
-    })
-}
+
+        swal.fire({
+            title: 'Confirmar Entrada em estoque?',
+            text: "Em caso de dúvidas, confira as quantidades",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+
+                // Funcao para add em firestore do Map unicos
+                unicos.forEach((e) => {
+                    db.collection('Estoque').doc(e.Cod).update({
+                        Produto: e.Produto,
+                        Cor: e.Cor,
+                        Qtd: firebase.firestore.FieldValue.increment(e.Qtd)
+                    })
+                })
+
+                setTimeout(() => {
+                    window.location.replace('index.html')
+                }, 1000)
+            }
+
+        })
+    } else {
+        swal.fire({
+            title: 'Nenhum Produto!',
+            icon: 'error',
+            showconfirmButton: true,
+            confirmButtonText: 'Ok'
+        })
+    }
 
 })
 
-window.onload = () =>  {
+cancel.addEventListener('click', () => {
+
+    Swal.fire({
+        title: 'Cancelar Entrada em Estoque?',       
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Fechar',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Cancelado!',
+                'Processo Cancelado!',
+                'success'
+            )
+
+            setTimeout(() => {
+                window.location.replace('index.html')
+            }, 1000)
+        
+        }
+    })
+})
+
+window.onload = () => {
     input.focus()
 }
