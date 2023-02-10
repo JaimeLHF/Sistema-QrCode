@@ -18,8 +18,31 @@ const add = document.getElementById('add')
 const cancel = document.getElementById('cancel')
 var codSearch = []
 var listCod = []
-
+const array_produtos = []
 const estoque = []
+
+
+
+
+
+
+function push_array() {
+
+    db.collection("Estoque").get().then((querySnapshot) => {
+        querySnapshot.forEach((docee) => {
+            // doc.data() is never undefined for query doc snapshots
+            array_produtos.push({
+                Cod: docee.id,
+                Produto: docee.data().Produto,
+                Cor: docee.data().Cor,
+                Qtd: 0,
+            })
+            // console.log(array_produtos);
+        });
+    });
+
+}
+
 
 input.addEventListener('input', event => {
 
@@ -63,16 +86,27 @@ input.addEventListener('input', event => {
                     // Se existe
                 } else {
 
-                    db.collection("Estoque").doc(inputValue)
+                    // array_produtos.find((codigo) => {
+                    //     if (codigo.Cod == inputValue) {
+                    //         estoque.push({
+                    //             Cod: codigo.Cod,
+                    //             Produto: codigo.Produto,
+                    //             Cor: codigo.Cor,
+                    //             Qtd: 0,
+                    //         })
+                    //         console.log(estoque)
 
-                        .onSnapshot((doc) => {
-                            estoque.push({
-                                Cod: inputValue,
-                                Produto: doc.data().Produto,
-                                Cor: doc.data().Cor,
-                                Qtd: 0,
-                            })
 
+                            db.collection("Estoque").doc(inputValue)
+
+                                .onSnapshot((doc) => {
+                                    estoque.push({
+                                        Cod: inputValue,
+                                        Produto: doc.data().Produto,
+                                        Cor: doc.data().Cor,
+                                        Qtd: 0,
+                                    })
+                        
 
                             estoque.find((id_unico) => {
 
@@ -93,6 +127,7 @@ input.addEventListener('input', event => {
                                 }
                             })
 
+                            console.log(unicos)
 
                             unicos.forEach((data) => {
 
@@ -111,14 +146,19 @@ input.addEventListener('input', event => {
                                 cellQtd.innerHTML = `Qtd: ${data.Qtd}`
 
                             })
-                        })
-
+                            
+                        // }
+                    // })                 
+                })
                     tbody.innerText = ''
                     input.value = ""
                     input.focus()
                 }
+                
             }
+            
         )
+        
     }
 
 
@@ -151,7 +191,8 @@ add.addEventListener('click', () => {
 
             if (result.isConfirmed) {
                 Swal.fire(
-                    'Estoque Atulizado!',                   
+                    'Deleted!',
+                    'Your file has been deleted.',
                     'success'
                 )
 
@@ -184,7 +225,7 @@ add.addEventListener('click', () => {
 cancel.addEventListener('click', () => {
 
     Swal.fire({
-        title: 'Cancelar Entrada em Estoque?',       
+        title: 'Cancelar Entrada em Estoque?',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -202,11 +243,12 @@ cancel.addEventListener('click', () => {
             setTimeout(() => {
                 window.location.replace('index.html')
             }, 1000)
-        
+
         }
     })
 })
 
 window.onload = () => {
     input.focus()
+    push_array()
 }
