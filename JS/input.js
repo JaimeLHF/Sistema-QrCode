@@ -191,11 +191,9 @@ add.addEventListener('click', () => {
 
             if (result.isConfirmed) {
                 Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    'Estoque Atualizado!',                    
                     'success'
                 )
-
                 // Funcao para add em firestore do Map unicos
                 unicos.forEach((e) => {
                     db.collection('Estoque').doc(e.Cod).update({
@@ -207,7 +205,7 @@ add.addEventListener('click', () => {
 
                 setTimeout(() => {
                     window.location.replace('index.html')
-                }, 1000)
+                }, 2000)
             }
 
         })
