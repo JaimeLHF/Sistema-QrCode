@@ -97,16 +97,16 @@ input.addEventListener('input', event => {
                     //         console.log(estoque)
 
 
-                            db.collection("Estoque").doc(inputValue)
+                    db.collection("Estoque").doc(inputValue)
 
-                                .onSnapshot((doc) => {
-                                    estoque.push({
-                                        Cod: inputValue,
-                                        Produto: doc.data().Produto,
-                                        Cor: doc.data().Cor,
-                                        Qtd: 0,
-                                    })
-                        
+                        .onSnapshot((doc) => {
+                            estoque.push({
+                                Cod: inputValue,
+                                Produto: doc.data().Produto,
+                                Cor: doc.data().Cor,
+                                Qtd: 0,
+                            })
+
 
                             estoque.find((id_unico) => {
 
@@ -146,19 +146,19 @@ input.addEventListener('input', event => {
                                 cellQtd.innerHTML = `Qtd: ${data.Qtd}`
 
                             })
-                            
-                        // }
-                    // })                 
-                })
+
+                            // }
+                            // })                 
+                        })
                     tbody.innerText = ''
                     input.value = ""
                     input.focus()
                 }
-                
+
             }
-            
+
         )
-        
+
     }
 
 
@@ -190,10 +190,10 @@ add.addEventListener('click', () => {
         }).then((result) => {
 
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Estoque Atualizado!',                    
-                    'success'
-                )
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Confirmar Entrada em estoque?',
+                })
                 // Funcao para add em firestore do Map unicos
                 unicos.forEach((e) => {
                     db.collection('Estoque').doc(e.Cod).update({
