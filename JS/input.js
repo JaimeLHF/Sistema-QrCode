@@ -151,8 +151,7 @@ add.addEventListener('click', () => {
 
             if (result.isConfirmed) {
                 Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+                    'Estoque Atulizado!',                   
                     'success'
                 )
 
