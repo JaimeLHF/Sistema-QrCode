@@ -16,6 +16,10 @@ const input = document.getElementById('input')
 const tbody = document.getElementById('tbody')
 const add = document.getElementById('add')
 const cancel = document.getElementById('cancel')
+const card_volumes = document.getElementById('count-volumes')
+const card_peso = document.getElementById('count-peso')
+const card_cub = document.getElementById('count-cubagem')
+
 var codSearch = []
 var listCod = []
 const array_produtos = []
@@ -26,22 +30,6 @@ const estoque = []
 
 
 
-function push_array() {
-
-    db.collection("Estoque").get().then((querySnapshot) => {
-        querySnapshot.forEach((docee) => {
-            // doc.data() is never undefined for query doc snapshots
-            array_produtos.push({
-                Cod: docee.id,
-                Produto: docee.data().Produto,
-                Cor: docee.data().Cor,
-                Qtd: 0,
-            })
-            // console.log(array_produtos);
-        });
-    });
-
-}
 
 
 input.addEventListener('input', event => {
@@ -94,7 +82,7 @@ input.addEventListener('input', event => {
                     //             Cor: codigo.Cor,
                     //             Qtd: 0,
                     //         })
-                    //         console.log(estoque)
+
 
 
                     db.collection("Estoque").doc(inputValue)
@@ -105,15 +93,51 @@ input.addEventListener('input', event => {
                                 Produto: doc.data().Produto,
                                 Cor: doc.data().Cor,
                                 Qtd: 0,
+                                Cub: doc.data().Cubagem,
+                                Peso: doc.data().Peso
                             })
 
 
-                            estoque.find((id_unico) => {
 
+
+                            // const soma_teste = estoque.reduce((acc, p) => acc + p.Cub, 0)
+
+                            const soma_cub = estoque.reduce((acumulador, objeto) => {
+                                return acumulador + objeto.Cub;
+                            }, 0);
+                            
+                            card_cub.innerHTML = `${soma_cub.toFixed(3)} `    
+
+                            const soma_peso = estoque.reduce((acumulador, objeto) => {
+                                return acumulador + objeto.Peso;
+                            }, 0);
+
+
+                            card_peso.innerHTML = `${soma_peso.toFixed(2)} `
+
+                            estoque.find((id_unico) => {
                                 if (id_unico.Cod == inputValue) {
                                     return id_unico.Qtd++
                                 }
                             })
+
+                            estoque.find((id_unico) => {
+                                if (id_unico.Cod == inputValue) {
+                                    return id_unico.Cub++
+                                }
+                            })
+
+                            estoque.find((id_unico) => {
+                                if (id_unico.Cod == inputValue) {
+                                    return id_unico.Peso++
+                                }
+                            })
+
+                            const soma_volumes = estoque.reduce((acumulador, objeto) => {
+                                return acumulador + objeto.Qtd;
+                            }, 0);
+
+                            card_volumes.innerHTML = `${soma_volumes} `
 
 
 
@@ -127,8 +151,9 @@ input.addEventListener('input', event => {
                                 }
                             })
 
-                            console.log(unicos)
 
+                           
+                            
                             unicos.forEach((data) => {
 
                                 const qtdLinhas = tbody.rows.length;
@@ -150,9 +175,11 @@ input.addEventListener('input', event => {
                             // }
                             // })                 
                         })
+
                     tbody.innerText = ''
                     input.value = ""
                     input.focus()
+                    // soma__info_cards()
                 }
 
             }
@@ -164,6 +191,8 @@ input.addEventListener('input', event => {
 
 })
 
+
+
 add.addEventListener('click', () => {
 
     const unicos = new Map();
@@ -174,6 +203,19 @@ add.addEventListener('click', () => {
             unicos.set(id_Unico.Cod, id_Unico)
         }
     })
+
+
+    // const soma_cub = estoque.reduce((acumulador, objeto) => {
+    //     return acumulador + objeto.Cub;
+    // }, 0);   
+   
+
+    // const soma_peso = estoque.reduce((acumulador, objeto) => {
+    //     return acumulador + objeto.Peso;
+    // }, 0);
+
+
+
 
     if (tbody.rows.length > 0) {
 
@@ -192,19 +234,21 @@ add.addEventListener('click', () => {
             if (result.isConfirmed) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Confirmar Entrada em estoque?',
+                    title: 'Estoque Atualizado!',
                 })
                 // Funcao para add em firestore do Map unicos
                 unicos.forEach((e) => {
                     db.collection('Estoque').doc(e.Cod).update({
                         Produto: e.Produto,
                         Cor: e.Cor,
-                        Qtd: firebase.firestore.FieldValue.increment(e.Qtd)
+                        Qtd: firebase.firestore.FieldValue.increment(e.Qtd),
+                        CubagemTotal: firebase.firestore.FieldValue.increment(e.Cub),
+                        PesoTotal: firebase.firestore.FieldValue.increment(e.Peso),
                     })
                 })
 
                 setTimeout(() => {
-                    window.location.replace('index.html')
+                    window.location.replace('relacao.html')
                 }, 2000)
             }
 
@@ -248,5 +292,8 @@ cancel.addEventListener('click', () => {
 
 window.onload = () => {
     input.focus()
-    push_array()
+}
+
+document.querySelector('body').onkeydown = (e) => {
+    input.focus()
 }

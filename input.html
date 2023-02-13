@@ -5,22 +5,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link rel="stylesheet" href="Styles/reset.css">
   <link rel="stylesheet" href="Styles/input.css">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/9ef2a6f272.css" crossorigin="anonymous">
   <title>QrCode</title>
 </head>
 
 <body>
 
   <header class="cabecalho">
-    <button class="cabecalho__menu" aria-label="Menu"><i></i></button>
+    <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
     <h1>Entrada Estoque</h1>
     <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png" alt="" srcset=""></button>
-
   </header>
+
+  <nav class="menu-lateral" id="menu_lateral">
+    <img src="img/DRD_MÓVEIS.png" alt="Logotipo da HZC" class="menu-lateral__logo">
+    <a href="#" id="menuLateralInicio" class="menu-lateral__link menu-lateral__link--inicio">Início</a>    
+    <a href="#" id="menuLateralVideos" class="menu-lateral__link menu-lateral__link--videos menu-lateral__link--ativo">Entrada</a>
+    <a href="#" id="menuLateralPicos" class="menu-lateral__link menu-lateral__link--picos">Saída</a>
+    <a href="#" id="menuLateralIntegrantes" class="menu-lateral__link menu-lateral__link--integrantes">Histórico</a>
+    <a href="#" id="menuLateralCamisas" class="menu-lateral__link menu-lateral__link--camisas">Logout</a>
+  </nav>
 
   <!-- --------------   section infos (botoes - card)  -------------- -->
   <section class="infos">
@@ -34,19 +41,19 @@
     <div class="cards">
 
       <div class="firstCard">
-        <h5 class="no-margin">Volumes Total:</h5>
-        <span class="text-uppercase text-size-mini"><b id="count-volumes">0</b>Volumes</span>
+        <h5>Volumes Total:</h5>
+        <span class="text-uppercase text-size-mini"><b id="count-volumes">0 </b>Volumes</span>
         <i class="icon-box"></i>
       </div>
 
       <div class="secondCard">
-        <h5>Peso Total:</h5><span><b id="count-peso">0</b>Kg</span>
+        <h5>Peso Total:</h5><span><b id="count-peso">0 </b>Kg</span>
         <i class="icon-peso"></i>
       </div>
 
       <div class="thirdCard">
-        <h5 class="no-margin">Cubagem Total:</h5>
-        <span class="text-uppercase text-size-mini"><b id="count-cubagem">0</b>m³</span>
+        <h5>Cubagem Total:</h5>
+        <span class="text-uppercase text-size-mini"><b id="count-cubagem">0 </b>m³</span>
         <i class="icon-cubagem"></i>
       </div>
 
@@ -55,12 +62,13 @@
   </section>
 
   <section class="info__input">
+    <label for="input">Cód:</label>
     <input type="text" class="input" id="input">
   </section>
 
   <table class="table" cellspacing="10" cellpadding="4">
     <thead>
-      <th>Table</th>
+      <th>Produtos</th>
     </thead>
     <tbody class="tbody" id="tbody">
 
@@ -69,11 +77,13 @@
 
 
   <script type="module" src="./JS/input.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+  <script type="module" src="JS/menu_lateral.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
   <script src="https://unpkg.com/sweetalert2@9/dist/sweetalert2.all.js"></script>
-  
+  <script src="https://kit.fontawesome.com/9ef2a6f272.js" crossorigin="anonymous"></script>
+
 
 </body>
 
