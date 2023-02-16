@@ -22,13 +22,7 @@ const card_cub = document.getElementById('count-cubagem')
 
 var codSearch = []
 var listCod = []
-const array_produtos = []
 const estoque = []
-
-
-
-
-
 
 
 
@@ -74,16 +68,6 @@ input.addEventListener('input', event => {
                     // Se existe
                 } else {
 
-                    // array_produtos.find((codigo) => {
-                    //     if (codigo.Cod == inputValue) {
-                    //         estoque.push({
-                    //             Cod: codigo.Cod,
-                    //             Produto: codigo.Produto,
-                    //             Cor: codigo.Cor,
-                    //             Qtd: 0,
-                    //         })
-
-
 
                     db.collection("Estoque").doc(inputValue)
 
@@ -99,14 +83,11 @@ input.addEventListener('input', event => {
 
 
 
-
-                            // const soma_teste = estoque.reduce((acc, p) => acc + p.Cub, 0)
-
                             const soma_cub = estoque.reduce((acumulador, objeto) => {
                                 return acumulador + objeto.Cub;
                             }, 0);
-                            
-                            card_cub.innerHTML = `${soma_cub.toFixed(3)} `    
+
+                            card_cub.innerHTML = `${soma_cub.toFixed(3)} `
 
                             const soma_peso = estoque.reduce((acumulador, objeto) => {
                                 return acumulador + objeto.Peso;
@@ -121,24 +102,12 @@ input.addEventListener('input', event => {
                                 }
                             })
 
-                            estoque.find((id_unico) => {
-                                if (id_unico.Cod == inputValue) {
-                                    return id_unico.Cub++
-                                }
-                            })
-
-                            estoque.find((id_unico) => {
-                                if (id_unico.Cod == inputValue) {
-                                    return id_unico.Peso++
-                                }
-                            })
 
                             const soma_volumes = estoque.reduce((acumulador, objeto) => {
                                 return acumulador + objeto.Qtd;
                             }, 0);
 
                             card_volumes.innerHTML = `${soma_volumes} `
-
 
 
                             // Funcao para trazer somente Cod unicos do array de objetos estoque
@@ -152,8 +121,39 @@ input.addEventListener('input', event => {
                             })
 
 
-                           
-                            
+                            // Funcao para somar Cubagem de codigos Unicos no array
+                            const codDesejado = inputValue;
+                            const somaCub = estoque.reduce((acc, obj) => {
+                                if (obj.Cod === codDesejado) {
+                                    return acc + doc.data().Cubagem;
+                                } else {
+                                    return acc;
+                                }
+                            }, 0);
+
+
+                            // Funcao para somar Peso de codigos Unicos no array
+                            const somaPeso = estoque.reduce((acc, obj) => {
+                                if (obj.Cod === codDesejado) {
+                                    return acc + doc.data().Peso;
+                                } else {
+                                    return acc;
+                                }
+                            }, 0);
+
+                            // Funcao para levar ao array a soma de Peso e Cubagem
+                            estoque.forEach((b) => {
+                                if (b.Cod == inputValue) {
+                                    b.Cub = somaCub
+                                    b.Peso = somaPeso
+                                } else {
+                                    b.Cub = b.Cub
+                                    b.Peso = b.Peso
+                                }
+                            })
+
+
+
                             unicos.forEach((data) => {
 
                                 const qtdLinhas = tbody.rows.length;
@@ -208,7 +208,7 @@ add.addEventListener('click', () => {
     // const soma_cub = estoque.reduce((acumulador, objeto) => {
     //     return acumulador + objeto.Cub;
     // }, 0);   
-   
+
 
     // const soma_peso = estoque.reduce((acumulador, objeto) => {
     //     return acumulador + objeto.Peso;
