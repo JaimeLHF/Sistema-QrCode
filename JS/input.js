@@ -81,7 +81,7 @@ input.addEventListener('input', event => {
                                 Peso: doc.data().Peso
                             })
 
-
+                            console.log(estoque)
 
                             const soma_cub = estoque.reduce((acumulador, objeto) => {
                                 return acumulador + objeto.Cub;
@@ -297,3 +297,71 @@ window.onload = () => {
 document.querySelector('body').onkeydown = (e) => {
     input.focus()
 }
+
+const loading = document.getElementById('loading');
+
+// Adiciona um event listener para quando a página carregar
+window.addEventListener('load', function () {
+    // Esconde o loading
+    loading.style.display = 'none';
+});
+
+
+// Ir para relacao.htmml
+const btn_inicio = document.getElementById('menuLateralInicio')
+
+btn_inicio.addEventListener('click', function () {
+    Swal.fire({
+        title: 'Cancelar Entrada em Estoque?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Fechar',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Cancelado!',
+                'Processo Cancelado!',
+                'success'
+            )
+
+            setTimeout(() => {
+                window.location.replace('relacao.html')
+            }, 1000)
+
+        }
+    })
+
+});
+
+
+// Ir para index.htmml
+const logout = document.getElementById('menuLateralCamisas')
+
+logout.addEventListener('click', function () {
+    Swal.fire({
+        title: 'Cancelar Entrada em Estoque?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Fechar',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Cancelado!',
+                'Processo Cancelado!',
+                'success'
+            )
+
+            setTimeout(() => {
+                window.location.replace('index.html')
+            }, 1000)
+
+        }
+    })
+
+});
