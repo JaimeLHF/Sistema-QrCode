@@ -11,7 +11,6 @@ firebase.initializeApp(firebaseConfig)
 
 const db = firebase.firestore()
 
-
 const input = document.getElementById('input')
 const tbody = document.getElementById('tbody')
 const add = document.getElementById('add')
@@ -24,6 +23,7 @@ var codSearch = []
 var listCod = []
 const estoque = []
 
+const loading_table = document.getElementById('loading_table')
 
 
 input.addEventListener('input', event => {
@@ -31,7 +31,16 @@ input.addEventListener('input', event => {
     const inputValue = event.target.value
 
 
+
     if (inputValue.length === 3) {
+
+        const newItem = document.createElement('tr')
+        newItem.setAttribute('class', 'loading_table')
+        newItem.appendChild(document.createTextNode('Loading...'))
+        tbody.appendChild(newItem)
+
+
+
 
         // Verificar se produto existe na colecao do banco de dados (documento)
         db.collection('Estoque').get().then(
@@ -65,7 +74,7 @@ input.addEventListener('input', event => {
 
                     input.value = ""
                     input.focus()
-                    // Se existe
+                    newItem.style.display = 'none'
                 } else {
 
 
@@ -81,20 +90,7 @@ input.addEventListener('input', event => {
                                 Peso: doc.data().Peso
                             })
 
-                            console.log(estoque)
 
-                            const soma_cub = estoque.reduce((acumulador, objeto) => {
-                                return acumulador + objeto.Cub;
-                            }, 0);
-
-                            card_cub.innerHTML = `${soma_cub.toFixed(3)} `
-
-                            const soma_peso = estoque.reduce((acumulador, objeto) => {
-                                return acumulador + objeto.Peso;
-                            }, 0);
-
-
-                            card_peso.innerHTML = `${soma_peso.toFixed(2)} `
 
                             estoque.find((id_unico) => {
                                 if (id_unico.Cod == inputValue) {
@@ -103,16 +99,9 @@ input.addEventListener('input', event => {
                             })
 
 
-                            const soma_volumes = estoque.reduce((acumulador, objeto) => {
-                                return acumulador + objeto.Qtd;
-                            }, 0);
-
-                            card_volumes.innerHTML = `${soma_volumes} `
-
 
                             // Funcao para trazer somente Cod unicos do array de objetos estoque
                             const unicos = new Map();
-
 
                             estoque.forEach((id_Unico) => {
                                 if (!unicos.has(id_Unico.Cod)) {
@@ -154,6 +143,7 @@ input.addEventListener('input', event => {
 
 
 
+
                             unicos.forEach((data) => {
 
                                 const qtdLinhas = tbody.rows.length;
@@ -165,21 +155,141 @@ input.addEventListener('input', event => {
                                 var cellQtd = linha.insertCell(3);
 
 
-                                cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove"><img src="img/trash.png" alt="Delete"></button>`
+                                cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove" id="remove"><img src="img/trash.png" alt="Delete"></button>`
                                 cellProduto.innerHTML = `Produto: ${data.Produto}`
                                 cellCor.innerHTML = `Cor: ${data.Cor}`
                                 cellQtd.innerHTML = `Qtd: ${data.Qtd}`
 
+
+                                // Funcao para remover itens da lista e somar novamente o array e os cards
+                                const removeBtn = cellCodigo.querySelector('#remove');
+
+                                removeBtn.addEventListener('click', () => {
+
+
+
+                                    const codigo = cellCodigo.querySelector('h3').textContent;
+
+                                    const produto = unicos.get(codigo);
+                                    db.collection('Estoque').doc(produto.Cod).onSnapshot((t) => {
+                                        if (produto.Qtd > 0) {
+                                            produto.Qtd--;
+                                            produto.Cub -= t.data().Cubagem;
+                                            produto.Peso -= t.data().Peso;
+                                        }
+                                        
+                                        cellQtd.innerHTML = `Qtd: ${produto.Qtd}`
+                                      
+
+                                        // Somar Cub do objeto Map
+                                        let sumCub = 0;
+                                        unicos.forEach((data) => {
+                                            sumCub += data.Cub;
+                                        })
+                                        card_cub.innerHTML = `${sumCub.toFixed(3)} `
+
+                                        // Somar Peso do objeto Map
+                                        let sumPeso = 0;
+                                        unicos.forEach((data) => {
+                                            sumPeso += data.Peso;
+                                        })
+                                        card_peso.innerHTML = `${sumPeso.toFixed(2)} `
+
+                                        // Somar Quantidade do objeto Map
+                                        let sumQtd = 0;
+                                        unicos.forEach((data) => {
+                                            sumQtd += data.Qtd;
+                                        })
+                                        card_volumes.innerHTML = `${sumQtd} `
+                                    })
+                                })
+
                             })
 
-                            // }
-                            // })                 
+                            newItem.style.display = 'none'
+
+
+
+                            // Somar Cub do objeto Map
+                            let sumCub = 0;
+                            unicos.forEach((data) => {
+                                sumCub += data.Cub;
+                            })
+                            card_cub.innerHTML = `${sumCub.toFixed(3)} `
+
+                            // Somar Peso do objeto Map
+                            let sumPeso = 0;
+                            unicos.forEach((data) => {
+                                sumPeso += data.Peso;
+                            })
+                            card_peso.innerHTML = `${sumPeso.toFixed(2)} `
+
+
+                            // Somar Quantidade do objeto Map
+                            let sumQtd = 0;
+                            unicos.forEach((data) => {
+                                sumQtd += data.Qtd;
+                            })
+                            card_volumes.innerHTML = `${sumQtd} `
+
+
+
+                            add.addEventListener('click', () => {
+
+
+                                if (tbody.rows.length > 0) {
+                                    swal.fire({
+                                        title: 'Confirmar Entrada em estoque?',
+                                        text: "Em caso de dúvidas, confira as quantidades",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        cancelButtonText: 'Cancelar',
+                                        confirmButtonText: 'Confirmar'
+                                    }).then((result) => {
+
+                                        if (result.isConfirmed) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Estoque Atualizado!',
+                                            })
+                                            // Funcao para add em firestore do Map unicos
+                                            unicos.forEach((e) => {
+                                                db.collection('Estoque').doc(e.Cod).update({
+                                                    Produto: e.Produto,
+                                                    Cor: e.Cor,
+                                                    Qtd: firebase.firestore.FieldValue.increment(e.Qtd),
+                                                    CubagemTotal: firebase.firestore.FieldValue.increment(e.Cub),
+                                                    PesoTotal: firebase.firestore.FieldValue.increment(e.Peso),
+                                                })
+                                            })
+
+                                            setTimeout(() => {
+                                                window.location.replace('relacao.html')
+                                            }, 2000)
+                                        }
+
+                                    })
+                                } else if (tbody.rows.length == 0) {
+                                    swal.fire({
+                                        title: 'Nenhum Produto!',
+                                        icon: 'error',
+                                        showconfirmButton: true,
+                                        confirmButtonText: 'Ok'
+                                    })
+                                }
+
+                            })
+
+
+
+
                         })
 
                     tbody.innerText = ''
                     input.value = ""
                     input.focus()
-                    // soma__info_cards()
                 }
 
             }
@@ -191,78 +301,6 @@ input.addEventListener('input', event => {
 
 })
 
-
-
-add.addEventListener('click', () => {
-
-    const unicos = new Map();
-
-    // Funcao para trazer somente Cod unicos do array de objetos estoque
-    estoque.forEach((id_Unico) => {
-        if (!unicos.has(id_Unico.Cod)) {
-            unicos.set(id_Unico.Cod, id_Unico)
-        }
-    })
-
-
-    // const soma_cub = estoque.reduce((acumulador, objeto) => {
-    //     return acumulador + objeto.Cub;
-    // }, 0);   
-
-
-    // const soma_peso = estoque.reduce((acumulador, objeto) => {
-    //     return acumulador + objeto.Peso;
-    // }, 0);
-
-
-
-
-    if (tbody.rows.length > 0) {
-
-
-        swal.fire({
-            title: 'Confirmar Entrada em estoque?',
-            text: "Em caso de dúvidas, confira as quantidades",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Confirmar'
-        }).then((result) => {
-
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Estoque Atualizado!',
-                })
-                // Funcao para add em firestore do Map unicos
-                unicos.forEach((e) => {
-                    db.collection('Estoque').doc(e.Cod).update({
-                        Produto: e.Produto,
-                        Cor: e.Cor,
-                        Qtd: firebase.firestore.FieldValue.increment(e.Qtd),
-                        CubagemTotal: firebase.firestore.FieldValue.increment(e.Cub),
-                        PesoTotal: firebase.firestore.FieldValue.increment(e.Peso),
-                    })
-                })
-
-                setTimeout(() => {
-                    window.location.replace('relacao.html')
-                }, 2000)
-            }
-
-        })
-    } else {
-        swal.fire({
-            title: 'Nenhum Produto!',
-            icon: 'error',
-            showconfirmButton: true,
-            confirmButtonText: 'Ok'
-        })
-    }
-
-})
 
 cancel.addEventListener('click', () => {
 
@@ -306,62 +344,3 @@ window.addEventListener('load', function () {
     loading.style.display = 'none';
 });
 
-
-// Ir para relacao.htmml
-const btn_inicio = document.getElementById('menuLateralInicio')
-
-btn_inicio.addEventListener('click', function () {
-    Swal.fire({
-        title: 'Cancelar Entrada em Estoque?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Fechar',
-        confirmButtonText: 'Confirmar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Cancelado!',
-                'Processo Cancelado!',
-                'success'
-            )
-
-            setTimeout(() => {
-                window.location.replace('relacao.html')
-            }, 1000)
-
-        }
-    })
-
-});
-
-
-// Ir para index.htmml
-const logout = document.getElementById('menuLateralCamisas')
-
-logout.addEventListener('click', function () {
-    Swal.fire({
-        title: 'Cancelar Entrada em Estoque?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Fechar',
-        confirmButtonText: 'Confirmar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Cancelado!',
-                'Processo Cancelado!',
-                'success'
-            )
-
-            setTimeout(() => {
-                window.location.replace('index.html')
-            }, 1000)
-
-        }
-    })
-
-});
