@@ -1,79 +1,66 @@
-
-
 const botaoMenu = document.getElementById('cabecalho__menu')
+const body = document.querySelector('body');
 const menu = document.getElementById('menu_lateral')
 
 botaoMenu.addEventListener('click', () => {
     menu.classList.toggle('menu-lateral--ativo')
 })
 
-// const menuDrop = document.querySelector('.cabecalho__perfil')
-// const listaInfos = document.querySelector('.listaInfos')
+// Ir para relacao.htmml
+const btn_inicio = document.getElementById('menuLateralInicio')
 
-// menuDrop.addEventListener('click', () => {
-//     listaInfos.classList.toggle('listaInfos--ativo')
-// })
+btn_inicio.addEventListener('click', function () {
+    Swal.fire({
+        title: 'Cancelar Entrada em Estoque?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Fechar',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Cancelado!',
+                'Processo Cancelado!',
+                'success'
+            )
+
+            setTimeout(() => {
+                window.location.replace('relacao.html')
+            }, 1000)
+
+        }
+    })
+
+});
 
 
+// Ir para index.htmml
+const logout = document.getElementById('menuLateralCamisas')
 
+logout.addEventListener('click', function () {
+    Swal.fire({
+        title: 'Cancelar Entrada em Estoque?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Fechar',
+        confirmButtonText: 'Confirmar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Cancelado!',
+                'Processo Cancelado!',
+                'success'
+            )
 
-    // const menuLateralInicio = document.querySelector('#menuLateralInicio')
-    // const menuLateralVideos = document.querySelector('#menuLateralVideos')
-    // const menuLateralPicos = document.querySelector('#menuLateralPicos')
-    // const menuLateralIntegrantes = document.querySelector('#menuLateralIntegrantes')
-    // const menuLateralCamisas = document.querySelector('#menuLateralCamisas')
+            setTimeout(() => {
+                window.location.replace('index.html')
+            }, 1000)
 
- 
+        }
+    })
 
-
-    // menuLateralInicio.addEventListener('click', () => {
-    //     menuLateralInicio.classList.add('menu-lateral__link--ativo')
-    //     menuLateralVideos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralPicos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralIntegrantes.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralCamisas.classList.remove('menu-lateral__link--ativo')
-     
-
-    // })
-
-    // menuLateralVideos.addEventListener('click', () => {
-    //     menuLateralVideos.classList.add('menu-lateral__link--ativo')
-    //     menuLateralInicio.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralPicos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralIntegrantes.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralCamisas.classList.remove('menu-lateral__link--ativo')
-      
-
-    // })
-
-    // menuLateralPicos.addEventListener('click', () => {
-    //     menuLateralPicos.classList.add('menu-lateral__link--ativo')
-    //     menuLateralInicio.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralVideos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralIntegrantes.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralCamisas.classList.remove('menu-lateral__link--ativo')
-       
-
-    // })
-
-    // menuLateralIntegrantes.addEventListener('click', () => {
-    //     menuLateralIntegrantes.classList.add('menu-lateral__link--ativo')
-    //     menuLateralVideos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralPicos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralInicio.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralCamisas.classList.remove('menu-lateral__link--ativo')
-     
-
-    // })
-
-    // menuLateralCamisas.addEventListener('click', () => {
-
-    //     menuLateralCamisas.classList.add('menu-lateral__link--ativo')
-    //     menuLateralVideos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralPicos.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralIntegrantes.classList.remove('menu-lateral__link--ativo')
-    //     menuLateralInicio.classList.remove('menu-lateral__link--ativo')
-       
-
-    // })
-
+});

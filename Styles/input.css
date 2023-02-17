@@ -3,21 +3,16 @@
     src: url(../icons/icones.ttf);
 }
 
-@import url('../icons/fontawesome-free-6.3.0-web/fontawesome-free-6.3.0-web/css/brands.css');
-/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,300&display=swap'); */
-
-
 
 body {
     background-color: #000000;
     font-family: 'Open Sans', 'icones', sans-serif;
     color: #ffffff;
-
+    height: 100vh;
 }
 
 a {
     text-decoration: none;
-    
 }
 
 
@@ -27,12 +22,21 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
+
+.loading_table { 
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+}
+
 
 
 /*  --------------   header  --------------*/
@@ -123,7 +127,7 @@ a {
     width: 100%;
     text-align: center;
     font-size: 14px;
-    z-index: 0;    
+    z-index: 0;
 }
 
 .cards>div>h5 {
@@ -206,6 +210,7 @@ tr:nth-child(odd) td:nth-child(1) {
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
+    margin-top: 1%;
 }
 
 .btn__remove img {
@@ -223,16 +228,14 @@ tr:nth-child(odd) td:nth-child(1) {
     border: none;
     height: 5vh;
     width: 7.5vh;
-    margin-left: 1em;
 }
 
 tr:nth-child(odd) td:nth-child(4) {
     border-radius: .25rem;
-
 }
 
 tr:nth-child(even) td:nth-child(1) {
-    background-color: #00ffb48f;
+    background-color: #02c9bfa1;
     height: 3vh;
     color: white;
     display: flex;
@@ -293,7 +296,7 @@ tr:nth-child(even) td:nth-child(1) {
 .menu-lateral__link--inicio::before {
     font-family: 'Font Awesome 5 Free';
     font-weight: 600;
-    content: "\f015";    
+    content: "\f015";
 }
 
 .menu-lateral__link--videos::before {
