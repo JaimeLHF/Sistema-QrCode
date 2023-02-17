@@ -1,3 +1,4 @@
+
 var firebaseConfig = {
     apiKey: "AIzaSyDh6_fijd6VKOHeo3_lyboPMn6KfLJd-1w",
     authDomain: "db-firebase-5d90c.firebaseapp.com",
@@ -38,8 +39,6 @@ input.addEventListener('input', event => {
         newItem.setAttribute('class', 'loading_table')
         newItem.appendChild(document.createTextNode('Loading...'))
         tbody.appendChild(newItem)
-
-
 
 
         // Verificar se produto existe na colecao do banco de dados (documento)
@@ -173,9 +172,9 @@ input.addEventListener('input', event => {
                                             produto.Cub -= t.data().Cubagem;
                                             produto.Peso -= t.data().Peso;
                                         }
-                                        
+
                                         cellQtd.innerHTML = `Qtd: ${produto.Qtd}`
-                                      
+
 
                                         // Somar Cub do objeto Map
                                         let sumCub = 0;
@@ -335,8 +334,7 @@ document.querySelector('body').onkeydown = (e) => {
 const loading = document.getElementById('loading');
 
 
-window.addEventListener('load', function () {   
+window.addEventListener('load', function () {
     loading.style.display = 'none';
 });
-
 
