@@ -101,47 +101,7 @@ input.addEventListener('input', event => {
 
 
                             // Funcao para trazer somente Cod unicos do array de objetos estoque
-                            const unicos = new Map();
-
-                            estoque.forEach((id_Unico) => {
-                                if (!unicos.has(id_Unico.Cod)) {
-                                    unicos.set(id_Unico.Cod, id_Unico)
-                                }
-                            })
-
-
-                            // Funcao para somar Cubagem de codigos Unicos no array
-                            const codDesejado = inputValue;
-                            const somaCub = estoque.reduce((acc, obj) => {
-                                if (obj.Cod === codDesejado) {
-                                    return acc + doc.data().Cubagem;
-                                } else {
-                                    return acc;
-                                }
-                            }, 0);
-
-
-                            // Funcao para somar Peso de codigos Unicos no array
-                            const somaPeso = estoque.reduce((acc, obj) => {
-                                if (obj.Cod === codDesejado) {
-                                    return acc + doc.data().Peso;
-                                } else {
-                                    return acc;
-                                }
-                            }, 0);
-
-                            // Funcao para levar ao array a soma de Peso e Cubagem
-                            estoque.forEach((b) => {
-                                if (b.Cod == inputValue) {
-                                    b.Cub = somaCub
-                                    b.Peso = somaPeso
-                                } else {
-                                    b.Cub = b.Cub
-                                    b.Peso = b.Peso
-                                }
-                            })
-
-
+                            const unicos = new Map();                         
 
 
                             unicos.forEach((data) => {
@@ -155,7 +115,7 @@ input.addEventListener('input', event => {
                                 var cellQtd = linha.insertCell(3);
 
 
-                                cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove" id="remove"><img src="img/trash.png" alt="Delete"></button>`
+                                cellCodigo.innerHTML = `<button class="btn__remove-transp"></button> <h3>${data.Cod}</h3> <button class="btn__remove" id="remove"><img src="img/subtracting.png" alt="Delete"></button>`
                                 cellProduto.innerHTML = `Produto: ${data.Produto}`
                                 cellCor.innerHTML = `Cor: ${data.Cor}`
                                 cellQtd.innerHTML = `Qtd: ${data.Qtd}`
@@ -165,8 +125,6 @@ input.addEventListener('input', event => {
                                 const removeBtn = cellCodigo.querySelector('#remove');
 
                                 removeBtn.addEventListener('click', () => {
-
-
 
                                     const codigo = cellCodigo.querySelector('h3').textContent;
 
