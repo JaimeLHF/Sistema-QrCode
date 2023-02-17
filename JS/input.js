@@ -334,9 +334,21 @@ document.querySelector('body').onkeydown = (e) => {
 
 const loading = document.getElementById('loading');
 
-// Adiciona um event listener para quando a página carregar
-window.addEventListener('load', function () {
-    // Esconde o loading
+
+window.addEventListener('load', function () {   
     loading.style.display = 'none';
 });
+
+const beforeUnloadListener = (event) => {
+    event.preventDefault();
+    return event.returnValue = "Are you sure you want to exit?";
+  };
+
+  input.addEventListener("input", (event) => {
+    if (event.target.value !== "") {
+      addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+    } else if (event.target.value == "") {
+      removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+    }
+  });
 
