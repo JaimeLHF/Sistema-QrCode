@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
   <link rel="stylesheet" href="Styles/reset.css">
-  <link rel="stylesheet" href="Styles/input.css">
+  <link rel="stylesheet" href="Styles/output.css">
 
-  <title>Entrada</title>
+  <title>Saída</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 
   <header class="cabecalho">
     <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
-    <h1>Entrada Estoque</h1>
+    <h1>Saída Estoque</h1>
     <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png" alt="" srcset=""></button>
   </header>
 
@@ -28,8 +28,8 @@
     <img src="img/DRD_MÓVEIS.png" alt="Logotipo da HZC" class="menu-lateral__logo">
     <a id="menuLateralInicio" class="menu-lateral__link menu-lateral__link--inicio">Início</a>
     <a href="#" id="menuLateralVideos"
-      class="menu-lateral__link menu-lateral__link--videos menu-lateral__link--ativo">Entrada</a>
-    <a id="menuLateralPicos" class="menu-lateral__link menu-lateral__link--picos">Saída</a>
+      class="menu-lateral__link menu-lateral__link--videos">Entrada</a>
+    <a href="output.html" id="menuLateralPicos" class="menu-lateral__link menu-lateral__link--picos menu-lateral__link--ativo">Saída</a>
     <a href="#" id="menuLateralIntegrantes" class="menu-lateral__link menu-lateral__link--integrantes">Histórico</a>
     <a href="#" id="menuLateralCamisas" class="menu-lateral__link menu-lateral__link--camisas">Logout</a>
   </nav>
@@ -80,7 +80,7 @@
 
   </table>
 
-  <script type="module" src="./JS/input.js"></script>
+  <script type="module" src="./JS/output.js"></script>
   <script type="module" src="JS/menu_lateral.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>

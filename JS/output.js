@@ -31,8 +31,6 @@ input.addEventListener('input', event => {
 
     const inputValue = event.target.value
 
-
-
     if (inputValue.length === 3) {
 
         const newItem = document.createElement('tr')
@@ -145,7 +143,7 @@ input.addEventListener('input', event => {
 
                                 const qtdLinhas = tbody.rows.length;
                                 const linha = tbody.insertRow(qtdLinhas);
-                                
+
                                 var cellCodigo = linha.insertCell(0);
                                 var cellProduto = linha.insertCell(1);
                                 var cellCor = linha.insertCell(2);
@@ -250,9 +248,9 @@ input.addEventListener('input', event => {
                                                 db.collection('Estoque').doc(e.Cod).update({
                                                     Produto: e.Produto,
                                                     Cor: e.Cor,
-                                                    Qtd: firebase.firestore.FieldValue.increment(e.Qtd),
-                                                    CubagemTotal: firebase.firestore.FieldValue.increment(e.Cub),
-                                                    PesoTotal: firebase.firestore.FieldValue.increment(e.Peso),
+                                                    Qtd: firebase.firestore.FieldValue.increment(-e.Qtd),
+                                                    CubagemTotal: firebase.firestore.FieldValue.increment(-e.Cub),
+                                                    PesoTotal: firebase.firestore.FieldValue.increment(-e.Peso),
                                                 })
                                             })
 
@@ -278,7 +276,6 @@ input.addEventListener('input', event => {
                                                     window.location.replace('relacao.html')
                                                 }
                                             })
-
                                         }
 
                                     })
@@ -291,11 +288,13 @@ input.addEventListener('input', event => {
                                     })
                                 }
 
-                            })                          
+                            })
+
+
 
 
                         })
-                        
+
                     tbody.innerText = ''
                     input.value = ""
                     input.focus()
@@ -330,7 +329,7 @@ cancel.addEventListener('click', () => {
             )
 
             setTimeout(() => {
-                window.location.replace('index.html')
+                window.location.replace('relacao.html')
             }, 1000)
 
         }
@@ -341,7 +340,7 @@ window.onload = () => {
     input.focus()
 }
 
-document.querySelector('body').onkeydown = (e) => {
+document.querySelector('body').onkeydown = () => {
     input.focus()
 }
 
