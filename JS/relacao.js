@@ -30,49 +30,44 @@ function read_db() {
 }
 
 
+
+
+
+
+// searchInput.addEventListener('input', () => {
+//     const searchInput = document.getElementById('searchInput').value.toLowerCase()
+//     const filteredEstoque = estoque.filter((item) => {
+//         const produto = item.Produto.toLowerCase()
+//         const cor = item.Cor.toLowerCase()
+//         const codigo = item.Cod.toLowerCase()
+//         return produto.includes(searchInput) || codigo.includes(searchInput)
+//     })
+//     renderTable(filteredEstoque)
+// })
+
+
+// searchInputCor.addEventListener('input', () => {
+//     const searchInputCor = document.getElementById('searchInput').value.toLowerCase()    
+//     const filteredEstoque = estoque.filter((item) => {
+//         const produto = item.Produto.toLowerCase()
+//         const cor = item.Cor.toLowerCase()
+//         const codigo = item.Cod.toLowerCase()    
+//         return cor.includes(searchInputCor)
+//     })
+//     renderTable(filteredEstoque)
+// })
+
 const searchButton = document.getElementById('searchButton')
-
-
-
-searchInput.addEventListener('input', () => {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase()
-    const filteredEstoque = estoque.filter((item) => {
-        const produto = item.Produto.toLowerCase()
-        const cor = item.Cor.toLowerCase()
-        const codigo = item.Cod.toLowerCase()
-        return produto.includes(searchInput) || codigo.includes(searchInput)
-    })
-    renderTable(filteredEstoque)
-})
-
-
-searchInputCor.addEventListener('input', () => {
-    const searchInputCor = document.getElementById('searchInputCor').value.toLowerCase()
-    const filteredEstoque = estoque.filter((item) => {
-        const produto = item.Produto.toLowerCase()
-        const cor = item.Cor.toLowerCase()
-        const codigo = item.Cod.toLowerCase()
-        return cor.includes(searchInputCor)
-    })
-    renderTable(filteredEstoque)
-})
-
-
 searchButton.addEventListener('click', () => {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase()
+    const searchInput = document.getElementById('searchInput').value.toLowerCase()    
     const filteredEstoque = estoque.filter((item) => {
         const produto = item.Produto.toLowerCase()
         const cor = item.Cor.toLowerCase()
-        const codigo = item.Cod.toLowerCase()
-        return produto.includes(searchInput) || cor.includes(searchInput) || codigo.includes(searchInput)
+        // const codigo = item.Cod.toLowerCase()      
+        return produto.includes(searchInput) || cor.includes(searchInput)
     })
-    renderTable(filteredEstoque)
+    renderTable(filteredEstoque) 
 })
-
-
-
-
-
 
 
 
@@ -80,7 +75,7 @@ searchButton.addEventListener('click', () => {
 
 function renderTable(data) {
     tbody.innerHTML = ''
-
+console.log(estoque)
     data.forEach((e) => {
         const linha = tbody.insertRow();
         var cellCodigo = linha.insertCell(0);

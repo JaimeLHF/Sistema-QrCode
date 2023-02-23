@@ -13,32 +13,47 @@
 
 <body>
 
+    <!-- <div id="loading">
+        <h3>Loading..</h3>
+    </div> -->
+
+    <header class="cabecalho">
+        <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
+        <h1>Entrada Estoque</h1>
+        <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png" alt="" srcset=""></button>
+    </header>
+
+    <nav class="menu-lateral" id="menu_lateral">
+        <img src="img/DRD_MÓVEIS.png" alt="Logotipo da HZC" class="menu-lateral__logo">
+        <a id="menuLateralInicio"
+            class="menu-lateral__link menu-lateral__link--inicio menu-lateral__link--ativo">Início</a>
+        <a id="menuLateralVideos" class="menu-lateral__link menu-lateral__link--videos">Entrada</a>
+        <a id="menuLateralPicos" class="menu-lateral__link menu-lateral__link--picos">Saída</a>
+        <a href="#" id="menuLateralIntegrantes" class="menu-lateral__link menu-lateral__link--integrantes">Histórico</a>
+        <a id="menuLateralCamisas" class="menu-lateral__link menu-lateral__link--camisas">Logout</a>
+    </nav>
+
+    <section class="search">
+        <p>Busca</p>
+        <input type="text" id="searchInput" class="searchInput" placeholder="Produto">
+        <input type="text" id="searchInputCor" class="searchInputCor" placeholder="Cor">
+
+        <button id="searchButton" class="searchButton"></button>
+    </section>
+
+
     <div>
-        <label for="searchInput">Produto:</label>
-        <input type="text" id="searchInput" name="searchInput">
+        <table class="table" cellspacing="10" cellpadding="4">
+            <thead>
+                <th>Estoque</th>
+            </thead>
+            <tbody class="tbody" id="tbody">
 
-        <label for="searchInputCor">Cor:</label>
-        <input type="text" id="searchInputCor" name="searchInputCor">
-
-        <button id="searchButton">Buscar</button>
+            </tbody>
+        </table>
     </div>
-
-
-
-    <table class="table" cellspacing="10" cellpadding="4">
-        <thead>
-            <th>Código</th>
-            <th>Produto</th>
-            <th>Cor</th>
-            <th>Qtd</th>
-        </thead>
-        <tbody class="tbody" id="tbody">
-
-        </tbody>
-    </table>
-
     <script type="module" src="JS/relacao.js"></script>
-    <!-- <script type="module" src="JS/menu_lateral.js"></script> -->
+    <script type="module" src="JS/menu_lateral.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>

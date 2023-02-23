@@ -277,8 +277,16 @@ tr:nth-child(even) td:nth-child(1) {
     padding-left: 5em;
     display: flex;
     align-items: center;
-
+    cursor: pointer;
 }
+
+.menu-lateral__link:hover {
+    color: rgba(255, 255, 255, 0.609);
+    padding-left: 56px;
+    border-left: 8px solid white;
+    background-color: rgba(0, 0, 0, 0.007);
+}
+
 
 .menu-lateral__link--ativo {
     color: rgba(255, 255, 255, 0.609);
