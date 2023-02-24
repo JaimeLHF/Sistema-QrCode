@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,9 @@
 
 <body>
 
-    <!-- <div id="loading">
+    <div id="loading">
         <h3>Loading..</h3>
-    </div> -->
+    </div>
 
     <header class="cabecalho">
         <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
@@ -41,6 +41,33 @@
         <button id="searchButton" class="searchButton"></button>
     </section>
 
+    <!-- --------------   section infos (botoes - card)  -------------- -->
+    <section class="infos">     
+
+        <div class="cards">
+
+            <div class="firstCard">
+                <h5>Volumes Total:</h5>
+                <span class="text-uppercase text-size-mini"><b id="count-volumes">0 </b>Volumes</span>
+                <i class="icon-box"></i>
+            </div>
+
+            <div class="secondCard">
+                <h5>Peso Total:</h5><span><b id="count-peso">0 </b>Kg</span>
+                <i class="icon-peso"></i>
+            </div>
+
+            <div class="thirdCard">
+                <h5>Cubagem Total:</h5>
+                <span class="text-uppercase text-size-mini"><b id="count-cubagem">0 </b>m³</span>
+                <i class="icon-cubagem"></i>
+            </div>
+
+        </div>
+
+    </section>
+
+
 
     <div>
         <table class="table" cellspacing="10" cellpadding="4">
@@ -53,11 +80,11 @@
         </table>
     </div>
     <script type="module" src="JS/relacao.js"></script>
-    <script type="module" src="JS/menu_lateral.js"></script>
+    <script type="module" src="JS/menu_lateral_relacao.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
-    <script src="https://unpkg.com/sweetalert2@9/dist/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

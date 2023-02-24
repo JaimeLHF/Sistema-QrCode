@@ -176,6 +176,52 @@ a {
 }
 
 
+/*  --------------   section infos (botoes - card)  --------------*/
+
+.infos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    padding: 2em 1em;
+    margin-bottom: 4em;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(180deg, #0B3066, #000000f0);
+}
+
+.cancel {
+    background-color: #21262d;
+    color: #58a6ff;
+    border-color: rgba(240, 246, 252, 0.1);
+    padding: 1em;
+    border-radius: 0.25rem;
+    width: auto;
+}
+
+.add {
+    background-color: #1f6feb;
+    color: #ffffff;
+    border-color: rgba(240, 246, 252, 0.1);
+    padding: 1em;
+    border-radius: 0.25rem;
+    width: auto;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    z-index: 0;
+}
+
+.cards>div>h5 {
+    margin-bottom: .5em;
+}
+
 
 
 /*  --------------   table  --------------*/

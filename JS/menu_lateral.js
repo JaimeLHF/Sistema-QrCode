@@ -105,7 +105,7 @@ btn_output.addEventListener('click', function () {
 // Ir para index.htmml
 const logout = document.getElementById('menuLateralCamisas')
 
-logout.addEventListener('click', function () { 
+logout.addEventListener('click', function () {
     Swal.fire({
         title: 'Confirmar Logout?',
         icon: 'question',
@@ -116,16 +116,30 @@ logout.addEventListener('click', function () {
         confirmButtonText: 'Confirmar'
     }).then((result) => {
         if (result.isConfirmed) {
+            let timerInterval
             Swal.fire({
-                icon: 'sucess',
+                // title: 'Auto close alert!',
+                html: 'Loading...',
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location.replace('index.html')
+                }
             })
-
-            setTimeout(() => {
-                window.location.replace('index.html')
-            }, 1000)
 
         }
     })
-
 });
 
