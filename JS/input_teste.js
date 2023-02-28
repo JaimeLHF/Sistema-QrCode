@@ -262,7 +262,7 @@ add.addEventListener('click', () => {
                 Swal.fire({
                     title: 'Atualizando Estoque!',
                     html: 'Loading...',
-                    timer: 2000,
+                    timer: 5000,
                     timerProgressBar: true,
                     didOpen: () => {
                         Swal.showLoading()
