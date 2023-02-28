@@ -87,7 +87,7 @@ logout.addEventListener('click', function () {
             Swal.fire({
                 // title: 'Auto close alert!',
                 html: 'Loading...',
-                timer: 3000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: () => {
                     Swal.showLoading()
