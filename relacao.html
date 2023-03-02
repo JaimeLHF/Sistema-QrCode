@@ -20,7 +20,8 @@
     <header class="cabecalho">
         <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
         <h1>Estoque</h1>
-        <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png" alt="" srcset=""></button>
+        <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png"
+                alt="Logo_Empresa"></button>
     </header>
 
     <nav class="menu-lateral" id="menu_lateral">
@@ -33,16 +34,9 @@
         <a id="menuLateralCamisas" class="menu-lateral__link menu-lateral__link--camisas">Logout</a>
     </nav>
 
-    <section class="search">
-        <p>Busca</p>
-        <input type="text" id="searchInput" class="searchInput" placeholder="Produto">
-        <input type="text" id="searchInputCor" class="searchInputCor" placeholder="Cor">
-
-        <button id="searchButton" class="searchButton"></button>
-    </section>
 
     <!-- --------------   section infos (botoes - card)  -------------- -->
-    <section class="infos">     
+    <section class="infos">
 
         <div class="cards">
 
@@ -79,6 +73,44 @@
             </tbody>
         </table>
     </div>
+
+    <div class="navbar_btn">
+        <ul class="navbar__items">
+            <li class="navbar__item navbar__item--home" id="nav__item-home">Home</li>
+            <li class="navbar__item navbar__item--busca" id="nav__item-busca">Busca</li>
+        </ul>
+    </div>
+
+    <div class="navbar" id="menu">
+        <p>Busca</p>
+        <ul class="search__menu" id="search__menu">
+            <li><input type="text" id="searchInputCod" class="searchInputCod" placeholder="Código"></li>
+            <li><input type="text" id="searchInput" class="searchInput" placeholder="Produto"></li>
+            <li> <input type="text" id="searchInputCor" class="searchInputCor" placeholder="Cor"></li>
+            <div>
+                
+                <button id="searchButton-cancel" class="searchButton-cancel"></button>
+                <button id="searchButton" class="searchButton"></button>
+                
+            </div>
+        </ul>
+    </div>
+
+    <!-- <section class="search">
+        <div class="search__btn">
+            <p>Busca</p>
+            <button class="search__menu_btn" aria-label="Menu" id="search__menu"><i></i></button>
+        </div>
+        <div class="search__menu">
+            <input type="text" id="searchInput" class="searchInput" placeholder="Código">
+            <input type="text" id="searchInput" class="searchInput" placeholder="Produto">
+            <input type="text" id="searchInputCor" class="searchInputCor" placeholder="Cor">
+
+            
+        </div>
+    </section> -->
+
+
     <script type="module" src="JS/relacao.js"></script>
     <script type="module" src="JS/menu_lateral_relacao.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>

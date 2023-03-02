@@ -41,16 +41,36 @@ function read_db() {
 
 }
 
+//  ------------------ Menu Busca ----------------------------
+
+const botaoMenu = document.getElementById('nav__item-busca')
+
+
+const menu = document.getElementById('menu')
+const menu_ativo = document.getElementById('search__menu')
+
+
+botaoMenu.addEventListener('click', () => {
+    menu.classList.toggle('nav__search--ativo')
+    menu_ativo.classList.toggle('search__menu--ativo')
+})
+
 
 //  ------------------ Busca ----------------------------
 
 const searchButton = document.getElementById('searchButton')
 searchButton.addEventListener('click', () => {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase()
+    menu.classList.toggle('nav__search--ativo')
+    menu_ativo.classList.toggle('search__menu--ativo')
+    const searchInputCod = document.getElementById('searchInputCod').value.toUpperCase()
+    const searchInput = document.getElementById('searchInput').value.toUpperCase()
+    const searchInputCor = document.getElementById('searchInputCor').value.toUpperCase()
+    console.log(searchInputCor)
     const filteredEstoque = estoque.filter((item) => {
-        const produto = item.Produto.toLowerCase()
-        const cor = item.Cor.toLowerCase()
-        return produto.includes(searchInput) || cor.includes(searchInput)
+        const cod = item.Cod.toUpperCase()
+        const produto = item.Produto.toUpperCase()
+        const cor = item.Cor.toUpperCase()
+        return cod.includes(searchInputCod) && produto.includes(searchInput) && cor.includes(searchInputCor)
     })
 
     // ----Soma no filtro do array 
@@ -63,6 +83,18 @@ searchButton.addEventListener('click', () => {
     renderTable(filteredEstoque)
 })
 
+
+//  -------------- Cancelar Busca --------------
+const botaoMenuCancel = document.getElementById('searchButton-cancel')
+
+botaoMenuCancel.addEventListener('click', () => {
+    menu.classList.toggle('nav__search--ativo')
+    menu_ativo.classList.toggle('search__menu--ativo')
+
+    document.getElementById('searchInputCod').value = ""
+    document.getElementById('searchInput').value = ""
+    document.getElementById('searchInputCor').value = ""
+})
 
 //  ------------------ Table ----------------------------
 const loading_table = document.getElementById('loading_table')
