@@ -53,6 +53,7 @@ const menu_ativo = document.getElementById('search__menu')
 botaoMenu.addEventListener('click', () => {
     menu.classList.toggle('nav__search--ativo')
     menu_ativo.classList.toggle('search__menu--ativo')
+    renderTable(estoque)
 })
 
 
