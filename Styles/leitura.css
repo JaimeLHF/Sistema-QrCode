@@ -6,7 +6,8 @@ body{
 .camera{
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
+    /* rotate: -90deg; */
     padding: 0;
     margin: 0;
     width: 100%;
