@@ -41,6 +41,44 @@ function read_db() {
 
 }
 
+//  ------------------ Menu Home ----------------------------
+
+const mybutton = document.getElementById('nav__item-home')
+
+mybutton.addEventListener('click', () => { 
+
+
+    let timerInterval
+    Swal.fire({
+        // title: 'Auto close alert!',
+        html: 'Loading...',
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+    }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            renderTable(estoque)
+            soma_card()
+        }
+    })
+
+    window.scroll({
+        top: 0,
+        behavior: "smooth"
+    })
+    
+})
+
 //  ------------------ Menu Busca ----------------------------
 
 const botaoMenu = document.getElementById('nav__item-busca')

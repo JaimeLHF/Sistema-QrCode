@@ -13,17 +13,56 @@
 </head>
 
 <body>
-    <div class="camera">
-        <video id="preview" class="camera_video"></video>
-    </div>
 
 
-    <input type="text" id="input_cod">
 
+    <header class="cabecalho">
+        <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
+        <h1>Estoque</h1>
+        <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png"
+                alt="Logo_Empresa"></button>
+    </header>
+
+    <nav class="menu-lateral" id="menu_lateral">
+        <img src="img/DRD_MÓVEIS.png" alt="Logotipo da HZC" class="menu-lateral__logo">
+        <a id="menuLateralInicio"
+            class="menu-lateral__link menu-lateral__link--inicio menu-lateral__link--ativo">Início</a>
+        <a href="#" id="menuLateralVideos" class="menu-lateral__link menu-lateral__link--videos">Entrada</a>
+        <a href="output.html" id="menuLateralPicos" class="menu-lateral__link menu-lateral__link--picos">Saída</a>
+        <a href="#" id="menuLateralIntegrantes" class="menu-lateral__link menu-lateral__link--integrantes">Histórico</a>
+        <a href="#" id="menuLateralCamisas" class="menu-lateral__link menu-lateral__link--camisas">Logout</a>
+    </nav>
+    <main>
+        <div id="camera" class="camera">
+            <img src="img/scan-facial.svg" alt="" class="camera_img">
+            <video id="preview" class="camera_video"></video>
+        </div>
+
+        <div class="instrucoes">
+            <h1>Scanner QrCode</h1>
+            <ul class="instrucoes_lista">
+                <li>1º - Aponte a câmera para o QrCode que vôce desejsa receber as informações</li>
+                <li>2º - As informações referentes ao produto scaneado irão aparecer na tela</li>
+            </ul>
+            
+        </div>
+
+        <input type="text" id="input_cod" class="input_cod">
+
+        <table class="table" cellspacing="10" cellpadding="4">
+            <thead>
+                <th>Produtos</th>
+            </thead>
+            <tbody class="tbody" id="tbody">
+            </tbody>
+
+        </table>
+    </main>
 
 
 
     <script type="module" src="JS/leitura.js"></script>
+    <script type="module" src="JS/menu_lateral.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
