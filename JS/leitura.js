@@ -31,7 +31,7 @@ scanner.addListener('scan', function (content) {
 Instascan.Camera.getCameras().then(cameras => {
     if (cameras.length > 0) {
         console.log(cameras)
-        scanner.start(cameras[0]);
+        scanner.start(cameras[1]);
     } else {
         console.error("Não existe câmera no dispositivo!");
     }
