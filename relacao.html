@@ -14,7 +14,7 @@
 <body>
 
     <div id="loading">
-        <h3>Loading..</h3>
+        <h3>Loading...</h3>
     </div>
 
     <header class="cabecalho">
@@ -77,6 +77,7 @@
     <div class="navbar_btn">
         <ul class="navbar__items">
             <li class="navbar__item navbar__item--home" id="nav__item-home">Home</li>
+            <li class="navbar__item navbar__item--Qr" id="nav__item-Qr"><a href="leitura.html">Scan QrCode</a></li>
             <li class="navbar__item navbar__item--busca" id="nav__item-busca">Busca</li>
         </ul>
     </div>
@@ -88,7 +89,7 @@
             <li><input type="text" id="searchInput" class="searchInput" placeholder="Produto"></li>
             <li> <input type="text" id="searchInputCor" class="searchInputCor" placeholder="Cor"></li>
             <div>
-                
+
                 <button id="searchButton-cancel" class="searchButton-cancel"></button>
                 <button id="searchButton" class="searchButton"></button>
                 
@@ -96,21 +97,7 @@
         </ul>
     </div>
 
-    <!-- <section class="search">
-        <div class="search__btn">
-            <p>Busca</p>
-            <button class="search__menu_btn" aria-label="Menu" id="search__menu"><i></i></button>
-        </div>
-        <div class="search__menu">
-            <input type="text" id="searchInput" class="searchInput" placeholder="Código">
-            <input type="text" id="searchInput" class="searchInput" placeholder="Produto">
-            <input type="text" id="searchInputCor" class="searchInputCor" placeholder="Cor">
-
-            
-        </div>
-    </section> -->
-
-
+    
     <script type="module" src="JS/relacao.js"></script>
     <script type="module" src="JS/menu_lateral_relacao.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>

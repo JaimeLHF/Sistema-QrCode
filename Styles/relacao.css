@@ -13,6 +13,7 @@ body {
 
 a {
     text-decoration: none;
+    color: white;
 }
 
 
@@ -145,6 +146,13 @@ a {
     content: "\f015";
 }
 
+.navbar__item--Qr::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    font-size: 24px;
+    content: "\f030";
+}
+
 .navbar__item--busca::before {
     font-family: 'Font Awesome 5 Free';
     font-weight: 700;
@@ -155,13 +163,10 @@ a {
 
 .navbar__items {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     width: 100%;
-    margin: .5rem auto;
+    margin: .7rem auto;
 }
-
-
-
 
 
 .search__menu {

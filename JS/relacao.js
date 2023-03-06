@@ -53,7 +53,6 @@ const menu_ativo = document.getElementById('search__menu')
 botaoMenu.addEventListener('click', () => {
     menu.classList.toggle('nav__search--ativo')
     menu_ativo.classList.toggle('search__menu--ativo')
-    renderTable(estoque)
 })
 
 
@@ -65,8 +64,7 @@ searchButton.addEventListener('click', () => {
     menu_ativo.classList.toggle('search__menu--ativo')
     const searchInputCod = document.getElementById('searchInputCod').value.toUpperCase()
     const searchInput = document.getElementById('searchInput').value.toUpperCase()
-    const searchInputCor = document.getElementById('searchInputCor').value.toUpperCase()
-    console.log(searchInputCor)
+    const searchInputCor = document.getElementById('searchInputCor').value.toUpperCase()  
     const filteredEstoque = estoque.filter((item) => {
         const cod = item.Cod.toUpperCase()
         const produto = item.Produto.toUpperCase()
@@ -95,6 +93,9 @@ botaoMenuCancel.addEventListener('click', () => {
     document.getElementById('searchInputCod').value = ""
     document.getElementById('searchInput').value = ""
     document.getElementById('searchInputCor').value = ""
+
+    renderTable(estoque)
+    soma_card()
 })
 
 //  ------------------ Table ----------------------------
@@ -124,6 +125,8 @@ function renderTable(data) {
     })
 
     newItem.style.display = 'none'
+
+    
 
 }
 

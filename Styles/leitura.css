@@ -1,0 +1,19 @@
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.camera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    rotate: -90deg;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.camera_off {
+    display: none;
+}
