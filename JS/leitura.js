@@ -11,7 +11,8 @@ firebase.initializeApp(firebaseConfig)
 
 const db = firebase.firestore()
 
-const estoque =[]
+const estoque = []
+const infos_tec = []
 
 const input_cod = document.getElementById('input_cod')
 const camera = document.getElementById('camera')
@@ -20,14 +21,18 @@ const cam = document.getElementById('preview')
 let scanner = new Instascan.Scanner(
     {
         video: document.getElementById('preview')
-        
+
     }
 );
 
 
 scanner.addListener('scan', function (content) {
-    
+
+    const instrucoes = document.querySelector('.instrucoes')
+
     camera.classList.toggle('camera_off')
+    instrucoes.classList.toggle('instrucoes--none')
+
     let timerInterval
     Swal.fire({
         // title: 'Auto close alert!',
@@ -44,35 +49,60 @@ scanner.addListener('scan', function (content) {
         willClose: () => {
             clearInterval(timerInterval)
         }
-    }).then((result) => {      
+    }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) {
             input_cod.value = content
         }
 
         db.collection("Estoque").where("Codigo", '==', content)
-                .get()
-                .then((querySnapshot) => {
-                    querySnapshot.forEach((doc) => {
-                        estoque.push({
-                            Codigo: content,
-                            Produtos: doc.data().Produto,
-                            Cores: doc.data().Cor,
-                            Quantidade: doc.data().Qtd,                           
-                            Cubagem: doc.data().CubagemTotal,                          
-                            Peso: doc.data().PesoTotal,
-                        });
-                        renderTable(estoque)
-                        const table = document.getElementById('table')
-                        table.classList.toggle('table--ativo')
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    estoque.push({
+                        Codigo: content,
+                        Produtos: doc.data().Produto,
+                        Cores: doc.data().Cor,
+                        Quantidade: doc.data().Qtd,
+                        Cubagem: doc.data().CubagemTotal,
+                        Peso: doc.data().PesoTotal,
                     });
-                })
+                    const table = document.querySelector('.infos')
+                    table.classList.toggle('infos--ativo')
+                    renderTable(estoque)
+
+                });
+            })
+        const infos = document.querySelector('.infos_tec')
+
+        infos.classList.toggle('infos--ativo')
+
+        const listInfos = document.querySelector('[data-list="infos_tec"]')
+
+        db.collection("Estoque").where("Codigo", '==', content).get()
+            .then((querySnapshot) => {
+                const listItem = querySnapshot.docs.reduce((acc, doc) => {
+                    acc += `<li>Cubagem: ${doc.data().Cubagem.toFixed(3)} m³<li>
+                        <li>Peso: ${doc.data().Peso.toFixed(2)} kg<li>
+                        <li>Medidas Embalagem: ${doc.data().Comp}cm x ${doc.data().Larg}cm x ${doc.data().Larg}cm<li>
+                        <li>Medidas Produto: ${doc.data().CompProd}cm x ${doc.data().LargProd}cm x ${doc.data().LargProd}cm<li>`
+
+                    return acc
+                }, '')
+                listInfos.innerHTML += listItem
+            })
+
+        const btn_scan = document.getElementById('btn_scan')
+
+        btn_scan.addEventListener('click', () => {            
+            location.reload()
+        })
     })
-    
+
 });
 
 
 Instascan.Camera.getCameras().then(cameras => {
-    if (cameras.length > 0) {    
+    if (cameras.length > 0) {
         scanner.start(cameras[1]);
     } else {
         alert("Não existe câmera no dispositivo!");
@@ -105,11 +135,12 @@ function renderTable() {
         cellProduto.innerHTML = `Produto: ${data.Produtos}`;
         cellCor.innerHTML = `Cor: ${data.Cores}`;
         cellQtd.innerHTML = `Qtd: ${data.Quantidade}`;
-        cellCub.innerHTML = `Cor: ${data.Cubagem}`;
-        cellPeso.innerHTML = `Qtd: ${data.Peso}`;
+        cellCub.innerHTML = `Cubagem Total: ${data.Cubagem.toFixed(3)}`;
+        cellPeso.innerHTML = `Peso Total: ${data.Peso.toFixed(2)}`;
 
     });
 
     newItem.style.display = 'none';
-    
+
 }
+

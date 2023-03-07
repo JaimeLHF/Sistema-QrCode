@@ -34,29 +34,40 @@
     </nav>
     <main>
         <div id="camera" class="camera">
-            <img src="img/scan-facial.svg" alt="" class="camera_img">
             <video id="preview" class="camera_video"></video>
         </div>
 
         <div class="instrucoes">
             <h1>Scanner QrCode</h1>
             <ul class="instrucoes_lista">
-                <li>1º - Aponte a câmera para o QrCode que vôce desejsa receber as informações</li>
-                <li>2º - As informações referentes ao produto scaneado irão aparecer na tela</li>
+                <li>1º - Aponte a câmera para o QrCode que vôce deseja receber as informações</li>
+                <li>2º - As informações referentes ao produto escaneado irão aparecer na tela</li>
             </ul>
-            
         </div>
 
         <input type="text" id="input_cod" class="input_cod">
 
-        <table class="table" cellspacing="10" cellpadding="4">
-            <thead>
-                <th>Produtos</th>
-            </thead>
-            <tbody class="tbody" id="tbody">
-            </tbody>
+        <div class="infos">
+            <div class="infos_table">
+            <table class="table" cellspacing="10" cellpadding="4">
+                <thead>
+                    <th>Estoque</th>
+                </thead>
+                <tbody class="tbody" id="tbody">
+                </tbody>
+            </table>
+        </div>
 
-        </table>
+        <div class="infos_tec">
+            <p class="infos_tec-text">Informações Técnicas</p>
+            <ul class="infos_tec-list" id="infos_tec-list" data-list="infos_tec">       
+                <!-- --------------- Informações Tecnicas ---------------->
+            </ul>   
+        </div>
+        <div class="btn">
+            <button id="btn_scan">Scanear Outro Produto</button>
+        </div>
+        </div>
     </main>
 
 

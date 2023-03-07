@@ -163,14 +163,10 @@ a {
     justify-content: center;   
 }
 
-.camera_img{
-    position: fixed;
-    color: aqua;
-    z-index: 2;
-}
 
 .camera_video{
-    padding: 3em;
+    width: 100%;
+    padding: 2em 0;
 }
 
 .camera_off {
@@ -201,18 +197,53 @@ a {
     font-size: 14px;
 }
 
+.instrucoes--none{
+    display: none;
+}
+
+
+/*  --------------   Informacoes  --------------*/
+
+.infos{
+    display: none;
+}
+
+.infos--ativo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.5em;
+}
+
+.infos_tec-text{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.infos_tec-list{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 1em;
+    text-align: left;
+    background-color: rgb(230 0 0 / 50%);
+    border-radius: 0.5em;
+}
+
 
 /*  --------------   table  --------------*/
 
-.table {
-    display: none;
+.infos_table{
     width: 100%;
-    font-weight: 500;
-    padding-bottom: 4em;
 }
 
-.table--ativo{
-    display: block;
+.table {
+    display: inline-table;
+    width: 100%;
+    font-weight: 500;
+    padding-bottom: 4em;  
 }
 
 
