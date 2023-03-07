@@ -8,6 +8,38 @@ botaoMenu.addEventListener('click', () => {
 })
 
 
+const menuLateralInicio = document.getElementById('menuLateralInicio')
+
+menuLateralInicio.addEventListener('click', function () {
+
+    const main = document.querySelector('.main')
+    main.classList.toggle('main_none')
+
+    let timerInterval
+    Swal.fire({
+        // title: 'Auto close alert!',
+        html: 'Loading...',
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+    }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            window.location.replace('relacao.html')
+        }
+    })
+});
+
+
 
 
 // Ir para input.htmml
