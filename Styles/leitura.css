@@ -157,14 +157,16 @@ a {
 }
 
 
- /* ------------------ Video ----------------- */
-.camera{
+/* ------------------ Video ----------------- */
+.camera {
     display: flex;
-    justify-content: center;   
+    justify-content: center;
 }
 
 
-.camera_video{    
+.camera_video {
+    width: 25em;
+    height: 16em;
     padding: 2em 0;
 }
 
@@ -172,42 +174,42 @@ a {
     display: none;
 }
 
-.input_cod{
+.input_cod {
     display: none;
 }
 
-.instrucoes{
+.instrucoes {
     text-align: center;
     font-weight: 700;
     font-size: 32px;
 }
 
-.instrucoes_lista{
+.instrucoes_lista {
     padding: 2em;
     text-align: center;
     font-weight: 300;
     font-size: 14px;
 }
 
-.instrucoes_lista > li{
+.instrucoes_lista>li {
     padding: 2em;
     text-align: center;
     font-weight: 300;
     font-size: 14px;
 }
 
-.instrucoes--none{
+.instrucoes--none {
     display: none;
 }
 
 
 /*  --------------   Informacoes  --------------*/
 
-.infos{
+.infos {
     display: none;
 }
 
-.infos--ativo{
+.infos--ativo {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -216,12 +218,12 @@ a {
     gap: 1.5em;
 }
 
-.infos_tec-text{
+.infos_tec-text {
     font-size: 20px;
     font-weight: 700;
 }
 
-.infos_tec-list{
+.infos_tec-list {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
@@ -231,18 +233,35 @@ a {
     border-radius: 0.5em;
 }
 
+.btn_scan {
+    margin-top: 5em;
+    padding: 1.5em;
+    width: 10em;
+    border-radius: 1em;
+    outline: none;
+    border: none;
+    background-color: #388BFD;
+}
+
+
+.btn_scan::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    font-size: 32px;
+    color: #ffffff;
+    content: "\f030";
+}
 
 /*  --------------   table  --------------*/
 
-.infos_table{
+.infos_table {
     width: 100%;
 }
 
 .table {
     display: inline-table;
     width: 100%;
-    font-weight: 500;
-    padding-bottom: 4em;  
+    font-weight: 500;   
 }
 
 
