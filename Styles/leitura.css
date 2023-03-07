@@ -158,17 +158,16 @@ a {
 
 
 /* ------------------ Video ----------------- */
-/* .camera {
+.camera {
     display: flex;
     justify-content: center;
-} */
+}
 
 
 .camera_video {
-    width: 30em;
-    background-color: red;
-    /* height: 16em;
-    padding: 2em 0; */
+    height: 30em;
+    background-color: red;    
+    padding: 2em 0;
 }
 
 .camera_off {
