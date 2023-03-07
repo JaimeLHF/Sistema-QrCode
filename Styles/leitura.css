@@ -161,12 +161,13 @@ a {
 .camera {
     display: flex;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);   
 }
 
 
 .camera_video {
-    height: 30em;
-    background-color: red;    
+    height: 25em;
+ 
     padding: 2em 0;
 }
 
