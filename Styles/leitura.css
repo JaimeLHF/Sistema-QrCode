@@ -166,6 +166,7 @@ a {
 
 .camera_video {
     width: 30em;
+    background-color: red;
     /* height: 16em;
     padding: 2em 0; */
 }
