@@ -19,6 +19,42 @@ const tbody = document.getElementById('tbody')
 const estoque = []
 
 
+function getUser() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            let userLabel = document.getElementById("user_email")
+            userLabel.innerHTML = user
+            console.log(user)
+        } else {
+            let timerInterval
+            Swal.fire({
+                icon: 'info',
+                title: 'Redirecionando Login!',
+                html: 'Loading...',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location.replace('index.html')
+                }
+            })
+        }
+    })
+
+}
+
+
 
 //  ------------------ Dados do Banco de Dados ----------------------------
 
@@ -45,7 +81,7 @@ function read_db() {
 
 const mybutton = document.getElementById('nav__item-home')
 
-mybutton.addEventListener('click', () => { 
+mybutton.addEventListener('click', () => {
 
 
     let timerInterval
@@ -76,7 +112,7 @@ mybutton.addEventListener('click', () => {
         top: 0,
         behavior: "smooth"
     })
-    
+
 })
 
 //  ------------------ Menu Busca ----------------------------
@@ -102,7 +138,7 @@ searchButton.addEventListener('click', () => {
     menu_ativo.classList.toggle('search__menu--ativo')
     const searchInputCod = document.getElementById('searchInputCod').value.toUpperCase()
     const searchInput = document.getElementById('searchInput').value.toUpperCase()
-    const searchInputCor = document.getElementById('searchInputCor').value.toUpperCase()  
+    const searchInputCor = document.getElementById('searchInputCor').value.toUpperCase()
     const filteredEstoque = estoque.filter((item) => {
         const cod = item.Cod.toUpperCase()
         const produto = item.Produto.toUpperCase()
@@ -164,7 +200,7 @@ function renderTable(data) {
 
     newItem.style.display = 'none'
 
-    
+
 
 }
 
@@ -196,6 +232,7 @@ function soma_card() {
 
 
 window.onload = function () {
+    getUser()
     read_db()
 
 }

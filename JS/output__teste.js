@@ -29,6 +29,43 @@ const cub = []
 const loading_table = document.getElementById('loading_table')
 
 
+function getUser() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            let userLabel = document.getElementById("user_email")
+            userLabel.innerHTML = user
+            console.log(user)
+        } else {
+            let timerInterval
+            Swal.fire({
+                icon: 'info',
+                title: 'Redirecionando Login!',
+                html: 'Loading...',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location.replace('index.html')
+                }
+            })
+        }
+    })
+
+}
+
+
+
 // --------------------------- Renderizar Tabela ao preencher Input ------------------------------
 
 input.addEventListener('input', event => {
@@ -152,7 +189,7 @@ function renderTable() {
     });
 
     newItem.style.display = 'none';
-    
+
 }
 
 // ------------------ Achar o índice do elemento no array estoque depois que clicar no remove ------------------
@@ -328,6 +365,7 @@ cancel.addEventListener('click', () => {
 
 window.onload = () => {
     input.focus()
+    getUser()
 }
 
 document.querySelector('body').onkeydown = () => {

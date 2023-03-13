@@ -18,6 +18,42 @@ const input_cod = document.getElementById('input_cod')
 const camera = document.getElementById('camera')
 const cam = document.getElementById('preview')
 
+function getUser() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            let userLabel = document.getElementById("user_email")
+            userLabel.innerHTML = user
+            console.log(user)
+        } else {
+            let timerInterval
+            Swal.fire({
+                icon: 'info',
+                title: 'Redirecionando Login!',
+                html: 'Loading...',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    window.location.replace('index.html')
+                }
+            })
+        }
+    })
+
+}
+
+
 let scanner = new Instascan.Scanner(
     {
         video: document.getElementById('preview')
@@ -93,7 +129,7 @@ scanner.addListener('scan', function (content) {
 
         const btn_scan = document.getElementById('btn_scan')
 
-        btn_scan.addEventListener('click', () => {            
+        btn_scan.addEventListener('click', () => {
             location.reload()
         })
     })
@@ -141,6 +177,12 @@ function renderTable() {
     });
 
     newItem.style.display = 'none';
+
+}
+
+
+window.onload = function () {
+    getUser()   
 
 }
 

@@ -1,0 +1,75 @@
+body {
+
+    background-image: url(../img/DRD_MÓVEIS.png);
+    background-size: 45%;
+    background-repeat: no-repeat;
+    background-position: 50% 5em;
+    background-color: #0D1117;
+
+}
+
+.titulo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 0.7em;
+    color: #ffffffe8;
+    background: #14233A;
+    border-bottom: 0.05em solid #5396fe87;
+}
+
+
+.container {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    color: #ffffffe8;   
+    padding: 4em 2em 0 2em;
+    background: #14233A;
+    border: 0.05em solid #5396fe87;
+    border-radius: 1em;
+}
+
+label{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+form > input {
+    width: 20em;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ffffffe8;
+    vertical-align: middle;
+    background-color: #0d1117;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    border: 0.05em solid #5396fe87;
+    border-radius: 6px;
+    box-shadow: 0 0 transparent;   
+    outline: none;
+}
+
+form > input:focus{
+    border: 0.05em solid #0066ff;
+}
+
+.btnLogin{
+    width: 10em;
+    padding: 1em;
+    margin: 1.5em;
+    color: aliceblue;
+    background-color: #1f6feb;
+    border: none;
+    border-radius: 6px;
+}

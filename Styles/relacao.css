@@ -383,6 +383,12 @@ tr:nth-child(even) td:nth-child(1) {
     padding: 16px;
 }
 
+.user_email {
+    text-align: center;
+    padding: 1em;
+    color: #C9D1D9; 
+}
+
 .menu-lateral__link {
     height: 64px;
     color: #95999c;
