@@ -22,7 +22,7 @@ function getUser() {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             let userLabel = document.getElementById("user_email")
-            userLabel.innerHTML = user.email
+            userLabel.innerHTML = user
             console.log(user)
         } else {
             let timerInterval
