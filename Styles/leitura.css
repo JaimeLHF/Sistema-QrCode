@@ -16,7 +16,7 @@ a {
     color: white;
 }
 
-.main_none{
+.main_none {
     display: none;
 }
 
@@ -165,13 +165,15 @@ a {
 .camera {
     display: flex;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);   
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 
 .camera_video {
+    width: 100%;
     height: 25em;
-    padding: 2em 0;
+ 
+
 }
 
 .camera_off {
@@ -265,7 +267,7 @@ a {
 .table {
     display: inline-table;
     width: 100%;
-    font-weight: 500;   
+    font-weight: 500;
 }
 
 
@@ -311,4 +313,15 @@ tr:nth-child(even) td:nth-child(1) {
     justify-content: center;
     align-items: center;
     border-radius: .5rem .5rem 0 0;
+}
+
+.qrcode_border {
+    position: absolute;
+    border-width: 5em 56em;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.48);
+    box-sizing: border-box;
+    /* inset: 0px; */
+    top: 5.5em;
+    padding: 8em;
 }

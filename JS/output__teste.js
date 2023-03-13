@@ -341,3 +341,18 @@ window.addEventListener('load', function () {
     loading.style.display = 'none';
 });
 
+
+window.onbeforeunload = function () {
+
+    const tbody = document.getElementById('tbody')
+
+    if (tbody.rows.length) {
+        return "Tem certeza que deseja sair da página?"; // mensagem a ser exibida
+    };
+
+    if (confirm("Tem certeza que deseja carregar a página?")) {
+        // código para carregar a página
+    } else {
+        // código para cancelar o carregamento da página
+    }
+}

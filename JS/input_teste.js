@@ -88,10 +88,14 @@ input.addEventListener('input', event => {
                 estoque[i].Cubagem += estoque[i].Cubagem_original
                 estoque[i].Peso += estoque[i].Peso_original
                 encontrado = true
+
+
                 break
             }
         }
         if (!encontrado) {
+
+
             db.collection("Estoque").where("Codigo", '==', inputValue)
                 .get()
                 .then((querySnapshot) => {
@@ -106,13 +110,13 @@ input.addEventListener('input', event => {
                             Peso_original: doc.data().Peso,
                             Peso: doc.data().Peso,
                         });
-                        renderTable();
+                        renderTable(estoque);
                         sum_cards();
                     });
                 })
         }
         else {
-            renderTable();
+            renderTable(estoque);
             sum_cards();
         }
 
@@ -127,7 +131,7 @@ input.addEventListener('input', event => {
 
 // --------------------------- Renderizar Tabela ------------------------------
 
-function renderTable() {
+function renderTable(datas) {
 
     const tbody = document.getElementById('tbody')
     const newItem = document.createElement('tr')
@@ -138,7 +142,7 @@ function renderTable() {
 
     tbody.innerHTML = ''
 
-    estoque.forEach((data) => {
+    datas.forEach((data) => {
         const linha = tbody.insertRow(tbody.rows.length);
         const cellCodigo = linha.insertCell(0);
         const cellProduto = linha.insertCell(1);
@@ -152,7 +156,7 @@ function renderTable() {
     });
 
     newItem.style.display = 'none';
-    
+
 }
 
 // ------------------ Achar o índice do elemento no array estoque depois que clicar no remove ------------------
@@ -327,17 +331,45 @@ cancel.addEventListener('click', () => {
 
 
 window.onload = () => {
+    const loading = document.getElementById('loading');
     input.focus()
+    loading.style.display = 'none'
 }
 
 document.querySelector('body').onkeydown = () => {
     input.focus()
 }
 
-const loading = document.getElementById('loading');
 
 
-window.addEventListener('load', function () {
-    loading.style.display = 'none';
-});
+
+
+
+window.onbeforeunload = function () {
+
+    if (tbody.rows.length == 0) {
+        window.location.replace('relacao.html')
+    } else {
+        Swal.fire({
+            title: 'Cancelar operação?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Fechar',
+            confirmButtonText: 'Confirmar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    icon: 'sucess',
+                })
+
+                setTimeout(() => {
+                    window.location.replace('relacao.html')
+                }, 1000)
+
+            }
+        })
+    }
+}
 

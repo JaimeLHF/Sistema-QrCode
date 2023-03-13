@@ -16,7 +16,7 @@ btn_inicio.addEventListener('click', function () {
         window.location.replace('relacao.html')
     } else {
         Swal.fire({
-            title: 'Cancelar Entrada em Estoque?',
+            title: 'Cancelar operação?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -47,7 +47,7 @@ btn_input.addEventListener('click', function () {
         window.location.replace('input.html')
     } else {
         Swal.fire({
-            title: 'Cancelar Entrada em Estoque?',
+            title: 'Cancelar operação?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -79,7 +79,7 @@ btn_output.addEventListener('click', function () {
         window.location.replace('output.html')
     } else {
         Swal.fire({
-            title: 'Cancelar Entrada em Estoque?',
+            title: 'Cancelar operação?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
