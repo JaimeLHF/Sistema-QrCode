@@ -18,7 +18,7 @@ var password = document.getElementById('password')
 
 
 btnLogin.addEventListener('click', function () {
-    login()
+    login()   
 });
 
 
@@ -42,15 +42,19 @@ document.getElementById('password')
 
 
 function login() {
-    if (firebase.auth().currentUser) {
+    
+    if (firebase.auth().currentUser) {  
+             
         firebase.auth().signOut()
     }
+    btnLogin.classList.toggle('button--loading') 
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
+           
             let timerInterval
             Swal.fire({
                 icon: 'info',
@@ -76,6 +80,7 @@ function login() {
             })
         })
         .catch((error) => {
+            btnLogin.classList.toggle('button--loading')
             const erroCode = error.code
 
             switch (erroCode) {

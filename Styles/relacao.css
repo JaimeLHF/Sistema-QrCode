@@ -3,12 +3,15 @@
     src: url(../icons/icones.ttf);
 }
 
+html, body {
+    min-height: 100%;
+}
 
 body {
     background-color: #000000;
     font-family: 'Open Sans', 'icones', sans-serif;
-    color: #ffffff;
-    height: 100vh;
+    color: #ffffff;  
+    position: absolute; 
 }
 
 a {
@@ -375,6 +378,15 @@ tr:nth-child(even) td:nth-child(1) {
     left: 0;
     transition: .60s;
     z-index: 999;
+}
+
+.over_active{    
+    position: absolute;
+    background: #00000085;
+    z-index: 995;
+    width: 100%;
+    height: 100%;
+    transition: .60s;
 }
 
 .menu-lateral__logo {

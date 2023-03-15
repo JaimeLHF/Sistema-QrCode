@@ -3,12 +3,14 @@
     src: url(../icons/icones.ttf);
 }
 
+html, body {
+    min-height: 93%;
+}
 
 body {
     background-color: #000000;
     font-family: 'Open Sans', 'icones', sans-serif;
-    color: #ffffff;
-    height: 100vh;
+    color: #ffffff;   
 }
 
 a {
@@ -77,10 +79,11 @@ a {
     flex-direction: column;
     background-color: #15191c;
     width: 75vw;
-    height: 100%;
+    height: 93%;
     z-index: 5;
     position: absolute;
     left: -100vw;
+    z-index: 999;
     transition: .60s;
 }
 
@@ -88,6 +91,15 @@ a {
     left: 0;
     transition: .60s;
     z-index: 999;
+}
+
+.over_active{    
+    position: absolute;
+    background: #00000085;
+    z-index: 995;
+    width: 100%;
+    height: 93%;
+    transition: .60s;
 }
 
 .menu-lateral__logo {

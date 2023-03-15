@@ -1,10 +1,12 @@
 const botaoMenu = document.getElementById('cabecalho__menu')
+const over = document.getElementById('over')
 const body = document.querySelector('body');
 const menu = document.getElementById('menu_lateral')
 const tbody = document.getElementById('tbody')
 
 botaoMenu.addEventListener('click', () => {
     menu.classList.toggle('menu-lateral--ativo')
+    over.classList.toggle('over_active')
 })
 
 
@@ -143,3 +145,14 @@ logout.addEventListener('click', function () {
 
 });
 
+
+window.addEventListener("click", function (event) {
+
+
+    if (event.target == over) {
+
+        menu.classList.toggle('menu-lateral--ativo')
+        over.classList.toggle('over_active')
+
+    }
+});

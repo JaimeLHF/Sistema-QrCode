@@ -1,10 +1,12 @@
 const botaoMenu = document.getElementById('cabecalho__menu')
+const over = document.getElementById('over')
 const body = document.querySelector('body');
 const menu = document.getElementById('menu_lateral')
 const tbody = document.getElementById('tbody')
 
 botaoMenu.addEventListener('click', () => {
     menu.classList.toggle('menu-lateral--ativo')
+    over.classList.toggle('over_active')
 })
 
 // Ir para relacao.htmml
@@ -25,13 +27,28 @@ btn_inicio.addEventListener('click', function () {
             confirmButtonText: 'Confirmar'
         }).then((result) => {
             if (result.isConfirmed) {
+                let timerInterval
                 Swal.fire({
-                    icon: 'sucess',
+                    // title: 'Auto close alert!',
+                    html: 'Loading...',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.location.replace('relacao.html')
+                    }
                 })
-
-                setTimeout(() => {
-                    window.location.replace('relacao.html')
-                }, 1000)
 
             }
         })
@@ -56,15 +73,28 @@ btn_input.addEventListener('click', function () {
             confirmButtonText: 'Confirmar'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    '',
-                    '',
-                    'success'
-                )
-
-                setTimeout(() => {
-                    window.location.replace('input.html')
-                }, 1000)
+                let timerInterval
+                Swal.fire({
+                    // title: 'Auto close alert!',
+                    html: 'Loading...',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.location.replace('input.html')
+                    }
+                })
 
             }
         })
@@ -88,14 +118,28 @@ btn_output.addEventListener('click', function () {
             confirmButtonText: 'Confirmar'
         }).then((result) => {
             if (result.isConfirmed) {
-
+                let timerInterval
                 Swal.fire({
-                    icon: 'sucess',
+                    // title: 'Auto close alert!',
+                    html: 'Loading...',
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        const b = Swal.getHtmlContainer().querySelector('b')
+                        timerInterval = setInterval(() => {
+                            b.textContent = Swal.getTimerLeft()
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                }).then((result) => {
+                    /* Read more about handling dismissals below */
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        window.location.replace('output.html')
+                    }
                 })
-
-                setTimeout(() => {
-                    window.location.replace('output.html')
-                }, 1000)
 
             }
         })
@@ -143,3 +187,14 @@ logout.addEventListener('click', function () {
     })
 });
 
+
+window.addEventListener("click", function (event) {
+
+
+    if (event.target == over) {
+
+        menu.classList.toggle('menu-lateral--ativo')
+        over.classList.toggle('over_active')
+
+    }
+});

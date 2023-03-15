@@ -346,9 +346,12 @@ cancel.addEventListener('click', () => {
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire(
-                'Cancelado!',
-                'Processo Cancelado!',
-                'success'
+                {                 
+                    icon: 'success',
+                    title: 'Operação Cancelada!',
+                    showConfirmButton: false,
+                    timer: 2000
+                }
             )
 
             setTimeout(() => {
@@ -380,17 +383,20 @@ window.addEventListener('load', function () {
 });
 
 
-window.onbeforeunload = function () {
+// window.onbeforeunload = function () {
 
-    const tbody = document.getElementById('tbody')
+//     const tbody = document.getElementById('tbody')
 
-    if (tbody.rows.length) {
-        return "Tem certeza que deseja sair da página?"; // mensagem a ser exibida
-    };
+//     if (tbody.rows.length) {
+//         return "Tem certeza que deseja sair da página?"; // mensagem a ser exibida
+//     };
 
-    if (confirm("Tem certeza que deseja carregar a página?")) {
-        // código para carregar a página
-    } else {
-        // código para cancelar o carregamento da página
-    }
-}
+//     if (confirm("Tem certeza que deseja carregar a página?")) {
+//         // código para carregar a página
+//     } else {
+//         // código para cancelar o carregamento da página
+//     }
+// }
+
+
+

@@ -349,10 +349,14 @@ cancel.addEventListener('click', () => {
         confirmButtonText: 'Confirmar'
     }).then((result) => {
         if (result.isConfirmed) {
+
             Swal.fire(
-                'Cancelado!',
-                'Processo Cancelado!',
-                'success'
+                {                 
+                    icon: 'success',
+                    title: 'Operação Cancelada!',
+                    showConfirmButton: false,
+                    timer: 2000
+                }
             )
 
             setTimeout(() => {
@@ -372,7 +376,7 @@ window.onload = () => {
     const loading = document.getElementById('loading');
     input.focus()
     loading.style.display = 'none'
-   
+
 }
 
 document.querySelector('body').onkeydown = () => {
@@ -381,34 +385,4 @@ document.querySelector('body').onkeydown = () => {
 
 
 
-
-
-
-window.onbeforeunload = function () {
-
-    if (tbody.rows.length == 0) {
-        window.location.replace('relacao.html')
-    } else {
-        Swal.fire({
-            title: 'Cancelar operação?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Fechar',
-            confirmButtonText: 'Confirmar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'sucess',
-                })
-
-                setTimeout(() => {
-                    window.location.replace('relacao.html')
-                }, 1000)
-
-            }
-        })
-    }
-}
 

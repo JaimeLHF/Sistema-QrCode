@@ -1,12 +1,12 @@
 body {
-
     background-image: url(../img/DRD_MÓVEIS.png);
     background-size: 45%;
     background-repeat: no-repeat;
     background-position: 50% 5em;
     background-color: #0D1117;
-
 }
+
+
 
 .titulo {
     text-align: center;
@@ -32,21 +32,21 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 1em;
-    color: #ffffffe8;   
+    color: #ffffffe8;
     padding: 4em 2em 0 2em;
     background: #14233A;
     border: 0.05em solid #5396fe87;
     border-radius: 1em;
 }
 
-label{
+label {
     font-size: 20px;
     font-weight: 700;
 }
 
-form > input {
+form>input {
     width: 20em;
-    padding: 5px 12px;
+    padding: 15px 12px;
     font-size: 14px;
     line-height: 20px;
     color: #ffffffe8;
@@ -56,20 +56,59 @@ form > input {
     background-position: right 8px center;
     border: 0.05em solid #5396fe87;
     border-radius: 6px;
-    box-shadow: 0 0 transparent;   
+    box-shadow: 0 0 transparent;
     outline: none;
 }
 
-form > input:focus{
+form>input:focus {
     border: 0.05em solid #0066ff;
 }
 
-.btnLogin{
+.btnLogin {
+    position: relative;
+    margin: 1em;
     width: 10em;
-    padding: 1em;
-    margin: 1.5em;
-    color: aliceblue;
-    background-color: #1f6feb;
+    padding: .8em 16px;
+    background: #0066ff;
     border: none;
-    border-radius: 6px;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+span {
+    font: bold 16px "Quicksand", san-serif;
+    color: #ffffff;
+    transition: all 0.2s;
+}
+
+.button--loading span {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.button--loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: button-loading-spinner 1s ease infinite;
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
 }
