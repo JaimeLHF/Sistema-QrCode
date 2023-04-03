@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css">
     <link rel="stylesheet" href="Styles/reset.css">
     <link rel="stylesheet" href="Styles/relacao.css">
     <title>Estoque drd Móveis</title>
@@ -17,16 +17,42 @@
         <h3>Loading...</h3>
     </div>
 
+    <header class="header">
+        <nav class="header_nav">
+            <div class="header_logo_search">
+                <a href="relacao.html"><img src="img/DRD_MÓVEIS.svg" alt="" class="header_logo"></a>
+                <div>
+                    <ul class="list_pages">
+                        <li class="cabecalho_list-item"> <a href="#" id="menuLateralInicio"
+                                class="menu-lateral__link--inicio-header">Início</a></li>
+                        <li class="cabecalho_list-item"> <a href="input.html" id="menuLateralVideos"
+                                class="menu-lateral__link-header">Entrada</a>
+                        </li>
+                        <li class="cabecalho_list-item"><a href="output.html" id="menuLateralPicos"
+                                class="menu-lateral__link--picos-header">Saída</a></li>
+                        <li class="cabecalho_list-item"> <a href="cadastro.html" id="menuLateralIntegrantes"
+                                class="menu-lateral__link--integrantes-header">Cadastro
+                                Produto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header_user">
+                <p id="user_email" class="user_email"></p>
+            </div>
+        </nav>
+    </header>
+
     <header class="cabecalho">
         <button class="cabecalho__menu" aria-label="Menu" id="cabecalho__menu"><i></i></button>
         <h1>Estoque</h1>
-        <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.png"
+        <button class="cabecalho__home" aria-label="drd móveis"><img src="img/DRD_MÓVEIS.svg"
                 alt="Logo_Empresa"></button>
     </header>
 
-  
+
     <nav class="menu-lateral" id="menu_lateral">
-        <img src="img/DRD_MÓVEIS.png" alt="Logotipo da HZC" class="menu-lateral__logo">
+        <img src="img/DRD_MÓVEIS.svg" alt="Logotipo da HZC" class="menu-lateral__logo">
         <p id="user_email" class="user_email"></p>
         <a id="menuLateralInicio"
             class="menu-lateral__link menu-lateral__link--inicio menu-lateral__link--ativo">Início</a>
@@ -37,7 +63,7 @@
     </nav>
 
     <div class="over" id="over"></div>
-    
+
     <!-- --------------   section infos (botoes - card)  -------------- -->
     <section class="infos">
 
@@ -64,12 +90,45 @@
 
     </section>
 
+    <!-- -------------------------   Filtro   -------------------------  -->
+    <section class="filter_table" id="filter_table">
+        <p class="subtitle">Filtro</p>
+        <div class="filter_inputs">
+            <div class="input-container ic2 fiter_input_cod">
+                <input id="filter_cod" class="filter_input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="filter_cod" class="placeholder">Código</label>
+            </div>
+            <div class="input-container ic2 fiter_input_prod">
+                <input id="filter_produto" class="filter_input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="filter_produto" class="placeholder">Produto</label>
+            </div>
+            <div class="input-container ic2 fiter_input_cor">
+                <input id="filter_cor" class="filter_input" type="text" placeholder=" " />
+                <div class="cut"></div>
+                <label for="filter_cor" class="placeholder">Cor</label>
+            </div>
+
+
+
+        </div>
+
+        <button class="cancel_filter" id="cancel_filter"><i class="fa-solid fa-xmark"></i></button>
+        <button class="confirm_filter" id="confirm_filter"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+    </section>
+
 
 
     <div>
         <table class="table" cellspacing="10" cellpadding="4">
             <thead>
-                <th>Estoque</th>
+                <th>Código</th>
+                <th>Produto</th>
+                <th>Cor</th>
+                <th>Qtd</th>
+                <th>Detalhes</th>
             </thead>
             <tbody class="tbody" id="tbody">
 
@@ -95,12 +154,59 @@
 
                 <button id="searchButton-cancel" class="searchButton-cancel"></button>
                 <button id="searchButton" class="searchButton"></button>
-                
+
             </div>
         </ul>
     </div>
 
-    
+    <!-- Overlay -->
+    <div class="modal_overlay" id="overlay"></div>
+    <!-- Modal -->
+    <div class="modal modal_hide" id="exampleModal" aria-hidden="true">
+        <div class="modal_header">
+            <h1 id="modal_codigo-tittle"></h1>
+            <button id="modal_close" class="modal_close"><i class="fa-regular fa-circle-xmark"></i></button>
+        </div>
+        <div class="modal_body">
+            <label for="modal_codigo">Código</label>
+            <input type="text" id="modal_codigo" class="modal_body_input" readonly>
+            <label for="modal_codigo">Produto</label>
+            <input type="text" id="modal_produto" class="modal_body_input" readonly>
+            <label for="modal_codigo">Cor</label>
+            <input type="text" id="modal_cor" class="modal_body_input" readonly>
+            <p>Estoque</p>
+            <div class="peso_cubagem">
+                <label for="modal_qtd">Quantidade Total</label>
+                <input type="text" id="modal_qtd" class="modal_body_input" readonly>
+                <label for="modal_codigo">Peso Total Kg</label>
+                <input type="text" id="modal_peso" class="modal_body_input" readonly>
+                <label for="modal_codigo">Cubagem Total m³</label>
+                <input type="text" id="modal_cub" class="modal_body_input" readonly>
+            </div>
+            <p>Medidas Produto (mm)</p>
+            <div class="medida_produto">
+                <label for="modal_comp_prod">Comprimento</label>
+                <input type="text" id="modal_comp_prod" class="modal_body_input" readonly>
+                <label for="modal_larg_prod">Largura</label>
+                <input type="text" id="modal_larg_prod" class="modal_body_input" readonly>
+                <label for="modal_prof_prod">Profundidade</label>
+                <input type="text" id="modal_prof_prod" class="modal_body_input" readonly>
+            </div>
+
+            <p>Medidas Embalagem (mm)</p>
+            <div class="medida_embalagem">
+
+                <label for="modal_comp_emb">Comprimento</label>
+                <input type="text" id="modal_comp_emb" class="modal_body_input" readonly>
+                <label for="modal_larg_emb">Largura</label>
+                <input type="text" id="modal_larg_emb" class="modal_body_input" readonly>
+                <label for="modal_prof_emb">Profundidade</label>
+                <input type="text" id="modal_prof_emb" class="modal_body_input" readonly>
+            </div>
+        </div>
+    </div>
+
+
     <script type="module" src="JS/relacao.js"></script>
     <script type="module" src="JS/menu_lateral_relacao.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>

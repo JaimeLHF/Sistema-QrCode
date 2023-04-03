@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="Styles/reset.css">
+    <link rel="stylesheet" href="Styles/cadastro.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css">
+    <title>Cadastro Produtos</title>
+
+</head>
+
+<body>
+
+
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+
+    <header class="header">
+        <nav class="header_nav">
+
+            <div class="header_logo_search">
+                <a href="relacao.html"><img src="img/DRD_MÓVEIS.svg" alt="" class="header_logo"></a>
+                <div>
+                    <ul class="list_pages">
+                        <li class="cabecalho_list-item"> <a href="relacao.html" id="menuLateralInicio"
+                                class="menu-lateral__link menu-lateral__link--inicio">Início</a></li>
+                        <li class="cabecalho_list-item"> <a href="input.html" id="menuLateralVideos"
+                                class="menu-lateral__link menu-lateral__link--videos menu-lateral__link--ativo">Entrada</a>
+                        </li>
+                        <li class="cabecalho_list-item"><a href="output.html" id="menuLateralPicos"
+                                class="menu-lateral__link menu-lateral__link--picos">Saída</a></li>
+                        <li class="cabecalho_list-item"> <a href="#" id="menuLateralIntegrantes"
+                                class="menu-lateral__link menu-lateral__link--integrantes">Cadastro Produto</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="header_user">
+                <p id="user_email" class="user_email"></p>
+            </div>
+        </nav>
+    </header>
+
+    <!-- <nav class="menu-lateral" id="menu_lateral">
+        <a id="menuLateralCamisas" class="menu-lateral__link menu-lateral__link--camisas">Logout</a>
+    </nav> -->
+
+    <div class="container">
+
+        <h1 class="title">Cadastro Produtos</h1>
+
+
+        <form class="cadastro" id="cadastro">
+
+            <!-- -------------------------   Codigo - Produto - Cor   -------------------------  -->
+
+            <p class="subtitle">Informações Produto</p>
+            <div class="info_prod">
+
+                <div class="input-container_cod ic1">
+                    <input id="codigo" class="input input_cod" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut cut-short"></div>
+                    <label for="codigo" class="placeholder">Código</label>
+                </div>
+
+                <div class="input-container ic1 input_prod_div">
+                    <input id="produto" class="input input_prod" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="produto" class="placeholder">Produto</label>
+                </div>
+
+                <div class="input-container ic1 input_cor_div">
+                    <input id="cor" class="input input_cor" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="cor" class="placeholder">Cor</label>
+                </div>
+
+            </div>
+
+            <!-- -------------------------   Peso - Cubagem  -------------------------  -->
+
+            <p class="subtitle subtitle_infos">Informações Técnicas</p>
+            <div class="info_tec_prod">
+                <div class="input-container ic2">
+                    <input id="peso" class="input" type="text" placeholder=" " data-input="input_cadastro" required />
+                    <div class="cut"></div>
+                    <label for="peso" class="placeholder">Peso Kg</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input id="cubagem" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="cubagem" class="placeholder">Cubagem m³</label>
+                </div>
+            </div>
+
+            <!-- -------------------------   Comp_Prod - Larg_Prod - Prof_Prod   -------------------------  -->
+
+            <p class="subtitle subtitle_infos">Medidas Produto</p>
+            <div class="info_tec_prod">
+                <div class="input-container ic2">
+                    <input id="comp_produto" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="comp_produto" class="placeholder">Comprimento (mm)</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input id="larg_produto" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="larg_produto" class="placeholder">Largura (mm)</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input id="prof_produto" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="prof_produto" class="placeholder">Profundidade (mm)</label>
+                </div>
+            </div>
+
+
+            <!-- -------------------------   Comp_Emb - Larg_Emb - Prof_Emb   -------------------------  -->
+
+            <p class="subtitle subtitle_infos">Medidas Embalagem</p>
+            <div class="info_tec_prod">
+                <div class="input-container ic2">
+                    <input id="comp_emb" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="comp_emb" class="placeholder">Comprimento (mm)</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input id="larg_emb" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="larg_emb" class="placeholder">Largura (mm)</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input id="prof_emb" class="input" type="text" placeholder=" " data-input="input_cadastro"
+                        required />
+                    <div class="cut"></div>
+                    <label for="prof_emb" class="placeholder">Profundidade (mm)</label>
+                </div>
+            </div>
+
+            <!-- -------------------------   Button   -------------------------  -->
+            <button type="text" class="submit" id="submit_btn"><i class="fa-solid fa-plus"></i></button>
+        </form>
+
+        <!-- -------------------------   Filtro   -------------------------  -->
+        <section class="filter_table" id="filter_table">
+            <p class="subtitle">Filtro</p>
+            <div class="filter_inputs">
+                <div class="input-container ic2 fiter_input_cod">
+                    <input id="filter_cod" class="filter_input" type="text" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="filter_cod" class="placeholder">Código</label>
+                </div>
+                <div class="input-container ic2 fiter_input_prod">
+                    <input id="filter_produto" class="filter_input" type="text" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="filter_produto" class="placeholder">Produto</label>
+                </div>
+                <div class="input-container ic2 fiter_input_cor">
+                    <input id="filter_cor" class="filter_input" type="text" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="filter_cor" class="placeholder">Cor</label>
+                </div>
+
+
+
+            </div>
+
+            <button class="cancel_filter" id="cancel_filter"><i class="fa-solid fa-xmark"></i></button>
+            <button class="confirm_filter" id="confirm_filter"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        </section>
+
+
+        <div id="dtPessoas" class="text-center">
+
+
+            <div id="pagination" class="pagination">
+                <button id="prevPage" class="prevPage"><i class="fa-solid fa-angles-left"></i> Anterior</button>
+                <button id="nextPage" class="nextPage">Próxima <i class="fa-solid fa-angles-right"></i></button>
+            </div>
+
+            <table id="tableProducts" class="tableProducts">
+                <thead id="thHeaderProducts">
+                    <tr id="headerhedProducts">
+                        <th id="headerCod">Código</th>
+                        <th id="headerProd">Produto</th>
+                        <th id="headerCor">Cor</th>
+                        <th id="headerCub">Download QrCode</th>
+                        <th id="headerPeso">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- Overlay -->
+    <div class="modal_overlay" id="overlay"></div>
+    <!-- Modal -->
+    <div class="modal modal_hide" id="exampleModal" aria-hidden="true">
+        <div class="modal_header">
+            <h1 id="modal_codigo-tittle"></h1>
+            <button id="modal_close" class="modal_close"><i class="fa-regular fa-circle-xmark"></i></button>
+        </div>
+        <div class="modal_body">
+            <label for="modal_codigo">Código</label>
+            <input type="text" id="modal_codigo" class="modal_body_input" readonly>
+            <label for="modal_codigo">Produto</label>
+            <input type="text" id="modal_produto" class="modal_body_input" data-input="input_cadastro_change" readonly>
+            <label for="modal_codigo">Cor</label>
+            <input type="text" id="modal_cor" class="modal_body_input" data-input="input_cadastro_change" readonly>
+            <div class="peso_cubagem">
+                <label for="modal_codigo">Peso Kg</label>
+                <input type="text" id="modal_peso" class="modal_body_input" data-input="input_cadastro_change" readonly>
+                <label for="modal_codigo">Cubagem m³</label>
+                <input type="text" id="modal_cub" class="modal_body_input" data-input="input_cadastro_change" readonly>
+            </div>
+            <p>Medidas Produto (mm)</p>
+            <div class="medida_produto">
+                <label for="modal_comp_prod">Comprimento</label>
+                <input type="text" id="modal_comp_prod" class="modal_body_input" data-input="input_cadastro_change"
+                    readonly>
+                <label for="modal_larg_prod">Largura</label>
+                <input type="text" id="modal_larg_prod" class="modal_body_input" data-input="input_cadastro_change"
+                    readonly>
+                <label for="modal_prof_prod">Profundidade</label>
+                <input type="text" id="modal_prof_prod" class="modal_body_input" data-input="input_cadastro_change"
+                    readonly>
+            </div>
+
+            <p>Medidas Embalagem (mm)</p>
+            <div class="medida_embalagem">  
+
+                <label for="modal_comp_emb">Comprimento</label>
+                <input type="text" id="modal_comp_emb" class="modal_body_input" data-input="input_cadastro_change"
+                    readonly>
+                <label for="modal_larg_emb">Largura</label>
+                <input type="text" id="modal_larg_emb" class="modal_body_input" data-input="input_cadastro_change"
+                    readonly>
+                <label for="modal_prof_emb">Profundidade</label>
+                <input type="text" id="modal_prof_emb" class="modal_body_input" data-input="input_cadastro_change"
+                    readonly>
+            </div>
+        </div>
+        <div class="modal_footer" id="modal_footer">
+            <button id="modal_delete" class="modal_delete">Excluir Produto</button>
+            <button id="modal_edit" class="modal_edit">Editar Produto</button>
+        </div>
+
+        <div class="modal_footer_edit" id="modal_footer_edit">
+            <button id="modal_cancel" class="modal_cancel">Cancelar</button>
+            <button id="modal_save" class="modal_save">Salvar</button>
+
+        </div>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="JS/cadastro.js"></script> 
+
+</body>
+
+</html>

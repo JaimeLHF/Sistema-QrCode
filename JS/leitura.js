@@ -1,11 +1,11 @@
-var firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyDh6_fijd6VKOHeo3_lyboPMn6KfLJd-1w",
     authDomain: "db-firebase-5d90c.firebaseapp.com",
     projectId: "db-firebase-5d90c",
     storageBucket: "db-firebase-5d90c.appspot.com",
     messagingSenderId: "210076045087",
     appId: "1:210076045087:web:0dcc5f236fb364d3dc2a2a"
-};
+  };
 
 firebase.initializeApp(firebaseConfig)
 
@@ -22,8 +22,7 @@ function getUser() {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             let userLabel = document.getElementById("user_email")
-            userLabel.innerHTML = user
-            console.log(user)
+            userLabel.innerHTML = user.email         
         } else {
             let timerInterval
             Swal.fire({
@@ -119,8 +118,8 @@ scanner.addListener('scan', function (content) {
                 const listItem = querySnapshot.docs.reduce((acc, doc) => {
                     acc += `<li>Cubagem: ${doc.data().Cubagem.toFixed(3)} m³<li>
                         <li>Peso: ${doc.data().Peso.toFixed(2)} kg<li>
-                        <li>Medidas Embalagem: ${doc.data().Comp}cm x ${doc.data().Larg}cm x ${doc.data().Larg}cm<li>
-                        <li>Medidas Produto: ${doc.data().CompProd}cm x ${doc.data().LargProd}cm x ${doc.data().LargProd}cm<li>`
+                        <li>Medidas Embalagem: ${doc.data().CompEmb}cm x ${doc.data().LargEmb}cm x ${doc.data().ProfEmb}cm<li>
+                        <li>Medidas Produto: ${doc.data().CompProd}cm x ${doc.data().LargProd}cm x ${doc.data().ProfProd}cm<li>`
 
                     return acc
                 }, '')

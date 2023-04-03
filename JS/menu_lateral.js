@@ -179,13 +179,17 @@ logout.addEventListener('click', function () {
             }).then((result) => {
                 /* Read more about handling dismissals below */
                 if (result.dismiss === Swal.DismissReason.timer) {
-                    window.location.replace('index.html')
+                    firebase.auth().signOut().then(() => {
+                        window.location.href = 'index.html'
+                    })
                 }
             })
 
         }
     })
 });
+
+
 
 
 window.addEventListener("click", function (event) {
@@ -198,3 +202,5 @@ window.addEventListener("click", function (event) {
 
     }
 });
+
+
